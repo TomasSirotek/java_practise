@@ -82,7 +82,5 @@ public class Modulo {
         }
         while(input != randomNumber);
 
-
-
     }
 }
