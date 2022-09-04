@@ -21,6 +21,11 @@ public class Algebra {
         double penisLength = 20.4;
         boolean isActiveSexually = true;
         boolean hasMentalProblems = false;
+
+        int age2 = 13;
+        double penisLength2 = 20.4;
+        boolean isActiveSexually2= true;
+        boolean hasMentalProblems2 = false;
         //
         int legs = 3;
         int arms = 1;
