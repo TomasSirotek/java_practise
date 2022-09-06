@@ -1,6 +1,6 @@
 package just_playground;
 
-public class Baby {
+public class Baby extends Main {
     // Instance variable 
     private boolean isAlive;
     public Baby(){
