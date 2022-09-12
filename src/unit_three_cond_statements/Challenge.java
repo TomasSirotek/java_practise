@@ -10,12 +10,12 @@ public class Challenge {
         int userInput = scanner.nextInt();
         int randomNumber = ThreadLocalRandom.current().nextInt(1, 4);
 
-
-        // if number > 4 -- incorrect input
+        System.out.println("Number is " + randomNumber);
+        // if number > 3 -- incorrect input
         // if number == guessed -- lucky bastard
         // if number != guessed -- try next time
-        if(userInput > 4){
-            System.out.println("Must be in range 1 - 4 ");
+        if(userInput > 3){
+            System.out.println("Must be in range 1 - 3 ");
         } else if (userInput == randomNumber) {
             System.out.println("Lucky you ");
         }else {
