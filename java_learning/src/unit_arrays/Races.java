@@ -26,5 +26,8 @@ public class Races {
             }
         }
         System.out.println("Fatest time " + fastestTime);
+
+
+
     }
 }
