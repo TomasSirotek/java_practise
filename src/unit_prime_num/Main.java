@@ -18,6 +18,7 @@ public class Main {
         if(isPrime){
             System.out.println(number);
         }
+
         }
     }
 }
