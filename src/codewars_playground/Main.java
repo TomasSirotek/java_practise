@@ -2,14 +2,48 @@ package codewars_playground;
 
 import unit_arrays.Array;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.OptionalInt;
 
 public class Main {
     public static void main(String[] args) {
+        // String result = whoLikesIt("Alex");
+        String result2 = whoLikesIt("Jacob", "Alex");
 
-        System.out.print(""); // must be equal 30;
+        // System.out.print(result);
+        System.out.print(result2);
+
     }
+
+    public static int digital_root(int n) {
+        // ...
+    }
+
+    public static String whoLikesIt(String... names) {
+        String[] namesArr = names.clone();
+        // if > 0 else no one
+        // if > 1 add "and"
+        // if > 2 after first "," name and name
+        // if > 3 after first "," Alex, Jacob and 2 others like this
+        String finalMessage = "";
+
+        if(names.length == 1){
+            finalMessage = names[0] + " likes this";
+        } else if(names.length == 2){
+            finalMessage = names[0] + " and " + names[1]+ " like this";
+        } else if (names.length == 3) {
+            finalMessage = names[0] + "," + names[1]+ " and " + names[2] + " like this";
+        } else if (names.length > 3) {
+            finalMessage = names[0] + "," + names[1]+ " and " + (names.length - 2) + " other like this";
+            // "Alex, Jacob and 2 others like this"
+        } else {
+            finalMessage = "no one likes the post";
+        }
+        return finalMessage;
+    }
+
     public static String camelCase(String str) {
         String[] words = str.split("\\s");
         StringBuilder capitalizeWord= new StringBuilder();
@@ -21,16 +55,12 @@ public class Main {
             }
         }
         return capitalizeWord.toString().trim();
-
     }
 
     public static int min(int[] list) {
         return Arrays.stream(list).min().orElse(0);
-      // return Integer.parseInt(String.valueOf(Arrays.stream(list).max()));
     }
     public static int points(String[] games) {
-        // x our score , y opponent
-
         final int winPoints = 3,
                   lossPoints = 0,
                   tiePoints = 1;
@@ -62,9 +92,6 @@ public class Main {
         }
         return reverseWord.toString().trim();
     }
-
-
-
 
       public static int sum(int[] arr){
         int total = 0;
