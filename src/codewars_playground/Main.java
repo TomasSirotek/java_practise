@@ -11,15 +11,27 @@ public class Main {
     public static void main(String[] args) {
         // String result = whoLikesIt("Alex");
         String result2 = whoLikesIt("Jacob", "Alex");
-
+        int result = digital_root(942);
         // System.out.print(result);
-        System.out.print(result2);
+        System.out.print(result);
 
     }
 
     public static int digital_root(int n) {
-        // ...
+        int root = 0;
+        while(n > 0 || root > 9)
+        {
+            if (n == 0) {
+                n = root;
+                root = 0;
+            }
+            root += n % 10;
+            n /= 10;
+        }
+        System.out.println("Sum of Digits: "+root);
+        return root;
     }
+
 
     public static String whoLikesIt(String... names) {
         String[] namesArr = names.clone();
