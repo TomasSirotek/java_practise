@@ -15,8 +15,6 @@ public class Main {
         int n = scanner.nextInt(); // return 6 (should be 8) -- user input
         // n + 1 (3 + 1 = 4) == needs to be 4 long[]
         fibonacciCache = new long[n + 1];
-        // fibonacci(n);
-
         for (int i = 0; i <= n; i++) {
             System.out.print(fibonacci(i) + " ");
         }
