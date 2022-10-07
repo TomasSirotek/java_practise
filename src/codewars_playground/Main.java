@@ -7,16 +7,21 @@ import java.util.OptionalInt;
 
 public class Main {
     public static void main(String[] args) {
-        int result =  sum(new int[] {});
-          // System.out.print(result);
-      //  String result = countingSheep(1);
-             var inte =min(new int[]{3,-7});
-             int resultanto =  points(new String[]
-                     {"1:1","2:2","3:5","4:4","2:2","3:3","4:4","3:3","4:4","4:4"});
-        System.out.print(resultanto); // must be equal 30;
+
+        System.out.print(""); // must be equal 30;
     }
     public static String camelCase(String str) {
-        // your code here
+        String[] words = str.split("\\s");
+        StringBuilder capitalizeWord= new StringBuilder();
+        for(String w:words){
+            if(!w.isEmpty()){
+                String first= w.substring(0,1);
+                String afterFirst= w.substring(1);
+                capitalizeWord.append(first.toUpperCase()).append(afterFirst);
+            }
+        }
+        return capitalizeWord.toString().trim();
+
     }
 
     public static int min(int[] list) {
