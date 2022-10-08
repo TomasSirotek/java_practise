@@ -2,20 +2,64 @@ package codewars_playground;
 
 import unit_arrays.Array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.OptionalInt;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         // String result = whoLikesIt("Alex");
         String result2 = whoLikesIt("Jacob", "Alex");
         int result = digital_root(942);
+        String test = expandedForm(86040);
+        int[] resultArr = digitize(54321);
+        var testtt = camelCase2("camelCasing");
         // System.out.print(result);
-        System.out.print(result);
+        System.out.print(test);
 
     }
+
+    public static String camelCase2(String input) {
+
+
+        for (int i = 0; i < input.length(); i++) {
+            if (Character.isUpperCase(input.charAt(i))) {
+               // remove space at position before
+
+
+                // input.charAt(i);
+                //input.charAt(i);
+            }
+        }
+        return null;
+    }
+
+    public static int[] digitize(long n) {
+        String[] str = Long.toString(n).split("");
+        Collections.reverse(Arrays.asList(str));
+
+        int[] arr = new int[str.length];
+        for (int i = 0; i < str.length; i++) {
+            arr[i] = Integer.parseInt(str[i]);
+        }
+        return arr;
+    }
+
+
+    public static String expandedForm(int num)
+    {
+        String[] str = Integer.toString(num).split("");
+        String result;
+        for(int i = 0; i < str.length-1; i++) {
+            if(Integer.parseInt(str[i]) > 0) {
+                for(int j = i; j < str.length-1; j++) {
+                    str[i] += '0';
+                }
+            }
+        }
+        result = Arrays.toString(str);
+        result = result.substring(1, result.length()-1).replace(", 0","").replace(",", " +");
+        return result;
+    }
+
 
     public static int digital_root(int n) {
         int root = 0;
