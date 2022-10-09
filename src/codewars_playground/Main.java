@@ -17,19 +17,42 @@ public class Main {
 
     }
 
+
     public static String camelCase2(String input) {
 
+        char text = ' ';
 
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
             if (Character.isUpperCase(input.charAt(i))) {
-               // remove space at position before
+                result.append(" ");
+            }
 
+            result.append(input.charAt(i));
+        }
+
+        System.out.println(result.toString());
+        // text += new String(" ");
+        String padded = input;
+        for (int i = 0; i < input.length(); i++) {
+            if (Character.isUpperCase(input.charAt(i))) { // find camel case
+               // add space at position before
+                System.out.println(input.charAt(i));
+                System.out.println(input.charAt(i - 1));
+
+
+                 char test = (char) (input.charAt(i-1) + ' ');
+
+                System.out.println(padded);
+                System.out.println(test);
 
                 // input.charAt(i);
                 //input.charAt(i);
             }
         }
-        return null;
+
+
+        return padded;
     }
 
     public static int[] digitize(long n) {

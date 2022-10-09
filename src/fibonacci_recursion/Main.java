@@ -18,7 +18,6 @@ public class Main {
         for (int i = 0; i <= n; i++) {
             System.out.print(fibonacci(i) + " ");
         }
-
     }
 
     private static long fibonacci(int n) {
