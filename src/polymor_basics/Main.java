@@ -11,7 +11,6 @@ public class Main {
 
          Animal a = new Animal();
          a.eat();
-          // eating
 
          Dog d = new Dog("Dick");
          d.eat();
@@ -22,8 +21,6 @@ public class Main {
 
          // Method overloading  same method with different params
          d.eat(2);
-
-        //  System.out.println(c.getIsHungry());
 
          String[][] field = new String[2][2];
 
