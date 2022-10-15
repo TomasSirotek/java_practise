@@ -7,21 +7,60 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         // String result = whoLikesIt("Alex");
-        String result2 = whoLikesIt("Jacob", "Alex");
-        int result = digital_root(942);
-        String test = expandedForm(86040);
-        int[] resultArr = digitize(54321);
-        var testtt = camelCase2("camelCasing");
-        // System.out.print(result);
-        System.out.print(test);
+//        String result2 = whoLikesIt("Jacob", "Alex");
+//        int result = digital_root(942);
+//        String test = expandedForm(86040);
+//        int[] resultArr = digitize(54321);
+//        var testtt = camelCase2("camelCasing");
+//        // System.out.print(result);
+//        System.out.print(test);
+
+       //  var test =squareSum(new int[] {5,-3,4});
+        var test = getMatrixProduct(
+                new double[][] { { 1, 2 }, { 3, 4 } },
+                new double[][] { { 5, 6 }, { 7, 8 } });
+
+
 
     }
+
+//    To complete this kata, write a function that takes two matrices - a and b -
+//    and returns the dot product of those matrices. If the matrices
+//    cannot be multiplied, return null for Java.
+
+    // Result
+    // new double[][] { { 6 } }
+
+    public static double[][] getMatrixProduct(double[][] a, double[][] b) {
+        for (int r = 0; r < a.length; r++) {
+            for (int c = 0; c < a.length; c++) {
+                System.out.println(a[r][c]);
+            }
+        }
+
+        return null;
+    }
+
+
+//    public static int squareSum(int[] n)
+//    {
+//        int result = 0;
+//        for (int i : n){
+//            var test = i * i;
+//            result += test;
+//        }
+//        return result;
+//    }
+
+
+
+
+
 
 
     public static String camelCase2(String input) {
 
         char text = ' ';
-
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
             if (Character.isUpperCase(input.charAt(i))) {

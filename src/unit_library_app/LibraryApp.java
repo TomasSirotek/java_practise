@@ -26,7 +26,7 @@ public class LibraryApp {
             }
         }
 
-        // just fucking around 
+        // just fucking around
         public void addLike(String isbn,int amount){
             System.out.println("Adding like to song " + isbn);
             Song s =  songRepo.findByIsbn(isbn);
