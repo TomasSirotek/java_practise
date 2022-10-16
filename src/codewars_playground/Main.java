@@ -32,13 +32,78 @@ public class Main {
     // new double[][] { { 6 } }
 
     public static double[][] getMatrixProduct(double[][] a, double[][] b) {
-        for (int r = 0; r < a.length; r++) {
-            for (int c = 0; c < a.length; c++) {
-                System.out.println(a[r][c]);
+        // [ 1  2 ] [ 5  6 ]
+        // [ 3  4 ] [ 7  8 ]
+
+        // _2dArray[0][0] _2dArray[0][1] = [ 19 ] [ 22 ]
+        // _2dArray[1][0] _2dArray[1][1] = [ 43 ] [ 50 ]
+
+        // new _2dArray[0][0] = a[0][0] * b [0][0] + a[0][1] * b[1][0]
+//        double test;
+//        double test2;
+//        double[][] _2dArray = new double[a.length][b.length];
+//
+//        _2dArray[0][0] = a[0][0] * b[0][0];
+//        _2dArray[0][1] = a[0][1] * b[1][0];
+//
+//        _2dArray[1][0] = a[1][0] * b[0][0];
+//        _2dArray[1][1] = a[1][1] * b[0][1];
+//
+       double row1,col1,row2,col2;
+
+        row1 = a.length;
+        col1 = a[0].length;
+
+        row2 = b.length;
+        col2 = b[0].length;
+
+        if(a[0].length != b.length){
+            return null;
+        }else {
+            double[][] prod = new double[a.length][b[0].length];
+            for (int r = 0; r < a.length; r++) {
+                for (int c = 0; c < b[0].length; c++) {
+                    for (int i = 0; i < b.length; i++) {
+                        prod[r][c] = prod[r][c] + a[r][i] * b[i][c];
+                    }
+                }
             }
+            return prod;
         }
 
-        return null;
+
+        //_2dArray[0][0] = a[0][0] * b [0][0] + a[0][1] * b[1][0];
+
+//        double [][] matrixOne = new double[a.length][a.length];
+//        double [][] matrixTwo = new double[b.length][b.length];
+//
+//        ArrayList<Double> matrixCalculatorList = new ArrayList<>();
+//        ArrayList<Double> matrixCalculatorList2 = new ArrayList<>();
+//
+//        for (int r = 0; r < a.length; r++) {
+//            for (int c = 0; c < a.length; c++) {
+//                 System.out.println(a[r][c]);
+//                matrixOne[r][c] = a[r][c];
+//                matrixCalculatorList.add(a[r][c]);
+//            }
+//        }
+//        for (int r2 = 0; r2 < b.length; r2++) {
+//            for (int c2 = 0; c2 < b.length; c2++) {
+//                System.out.println(b[r2][c2]);
+//
+//                matrixTwo[r2][c2] = b[r2][c2];
+//                matrixCalculatorList2.add(b[r2][c2]);
+//            }
+//        }
+//
+//        for (int i = 0; i < matrixCalculatorList.size(); i++) {
+//             matrixCalculatorList2.get(i);
+//        }
+//
+//        _2dArray[0][0] = matrixOne[0][0] * matrixTwo[0][0];
+//
+//
+//        return null;
     }
 
 
