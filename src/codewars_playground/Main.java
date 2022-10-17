@@ -2,7 +2,9 @@ package codewars_playground;
 
 import unit_arrays.Array;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,9 +22,34 @@ public class Main {
                 new double[][] { { 1, 2 }, { 3, 4 } },
                 new double[][] { { 5, 6 }, { 7, 8 } });
 
+        int[] result = hexStringToRGB("#FF9933");
 
 
     }
+
+    public static int[] hexStringToRGB(String hex) {
+        ArrayList<Integer> hexDecode = new ArrayList<>();
+        int[] resultNew = new int[3];
+        int r,g,b;
+
+        r = Integer.valueOf( hex.substring( 1, 3 ), 16 );
+        g = Integer.valueOf( hex.substring( 3, 5 ), 16 );
+        b = Integer.valueOf( hex.substring( 5, 7 ), 16 );
+        hexDecode.add(r);
+        hexDecode.add(g);
+        hexDecode.add(b);
+
+        for (int i = 0; i < resultNew.length; i++) {
+            resultNew[i] = hexDecode.get(i);
+        }
+        return resultNew;
+    }
+
+
+    // hex to rgb
+
+
+
 
 //    To complete this kata, write a function that takes two matrices - a and b -
 //    and returns the dot product of those matrices. If the matrices
@@ -60,7 +87,7 @@ public class Main {
         if(a[0].length != b.length){
             return null;
         }else {
-            double[][] prod = new double[a.length][b[0].length];
+            double[][] prod = new double[a.length][b[0].length]; // new dot product matrix
             for (int r = 0; r < a.length; r++) {
                 for (int c = 0; c < b[0].length; c++) {
                     for (int i = 0; i < b.length; i++) {
