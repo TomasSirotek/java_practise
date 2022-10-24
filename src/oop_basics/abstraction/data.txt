@@ -1,0 +1,11 @@
+# Contains all the data for reading
+
+Test2
+John
+Joe
+Adam
+39029909103222
+random@email.cz
+ROTTERDAM
+TEST@GMAIL.COM
+Street
