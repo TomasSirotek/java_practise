@@ -1,17 +1,18 @@
 package oop_basics.assign5;
 
-import java.util.ArrayList;
+import java.util.*;
+
 import java.util.List;
 
 public class Teacher extends Person{
 
-    private List<String> subjects;
+    private List<String> subjects = new ArrayList<>();;
     private String initials;
     private Double salary;
 
-    public Teacher(int id, String name, String email) {
-        super(id, name, email);
-        this.subjects = new ArrayList<>();
+    public Teacher(int id, String name,String initials) {
+        super(id, name);
+        this.initials = initials;
     }
 
     public List<String> getSubjects() {
@@ -19,24 +20,21 @@ public class Teacher extends Person{
     }
 
     public String getInitials() {
-        StringBuilder initials = new StringBuilder();
-        boolean addNext = true;
-        if (getName() != null) {
-            for (int i = 0; i < getName().length(); i++) {
-                char c = getName().charAt(i);
-                if (c == ' ' || c == '-' || c == '.') {
-                    addNext = true;
-                } else if (addNext) {
-                    initials.append(c);
-                    addNext = false;
-                }
-            }
-        }
-        return initials.toString();
-    }
-
-    public void setInitials(String initials) {
-        this.initials = initials;
+        return this.initials;
+//        StringBuilder initials = new StringBuilder();
+//        boolean addNext = true;
+//        if (getName() != null) {
+//            for (int i = 0; i < getName().length(); i++) {
+//                char c = getName().charAt(i);
+//                if (c == ' ' || c == '-' || c == '.') {
+//                    addNext = true;
+//                } else if (addNext) {
+//                    initials.append(c);
+//                    addNext = false;
+//                }
+//            }
+//        }
+//        return initials.toString();
     }
 
     public void addSubject(String subject){
@@ -44,7 +42,7 @@ public class Teacher extends Person{
     }
 
     public Double getSalary() {
-        return salary;
+        return this.salary;
     }
 
     public void setSalary(Double salary) {

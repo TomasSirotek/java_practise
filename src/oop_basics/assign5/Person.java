@@ -6,12 +6,10 @@ public class Person {
     private String email;
 
 
-    public Person(int id, String name, String email) {
+    public Person(int id, String name) {
         this.id = id;
         this.name = name;
-        this.email = email;
     }
-
     public String getName() {
         return name;
     }
@@ -24,14 +22,9 @@ public class Person {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }

@@ -5,25 +5,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestClass {
-    private List<Person> userList = new ArrayList<>();
+
+    private IPersonManager personManager;
+    private List<Person> userList = new ArrayList<>() ;
 
     public TestClass(){
-       Person p = new Person(100,"Hans Nielsen","yahoo@gmail.com");
-       Person p2 = new Person(101,"Niels Hansen","yahoo@gmail.com");
-       Person p3 = new Person(102,"Ib Boesen","yahoo@gmail.com");
+        this.personManager = new PersonManager();
 
-       Teacher t = new Teacher(202,"Bent H.Pedersen","bhp@easv.dk");
-       Teacher t2 = new Teacher(203,"Adam R.Rotter Dam","rip@easv.dk");
-        t2.addSubject("Multimedia");
+        Person p = new Person(100,"Hans Nielsen");
+
+        Person p2 = new Person(100,"Hans Nielsen");
+        Person p3 = new Person(101,"Niels Hansen");
+        p.setEmail("Tomas@email");
+        p2.setEmail("Retard@emial");
+        p3.setEmail("picovinaToto@emial.com");
+
+        Teacher t1 = new Teacher(200,"Adriana","A");
+        Teacher t2 = new Teacher(201,"Tomas","T");
+        t1.setEmail("Radoslav@gmail.com");
+        t1.addSubject("Multimedia");
         t2.addSubject("Programming");
-       userList.add(p);
-       userList.add(p2);
-       userList.add(p3);
-       userList.add(t);
-       userList.add(t2);
+
+        Student s1 = new Student(300,"Adam","CS");
 
 
+        Student s2 = new Student(300,"Student 2","BIO");
 
+        s1.addGrade(new GradeInfo("Math",10));
+        s1.addGrade(new GradeInfo("Math",5));
+
+        s2.addGrade(new GradeInfo("Math",5));
+
+        s1.setEmail("bib@easv.dk");
+        s2.setEmail("test@easv.dk");
+        userList.add(p);
+        userList.add(p2);
+        userList.add(p3);
+        userList.add(t1);
+        userList.add(t2);
+        userList.add(s1);
+        userList.add(s2);
     }
 
     public List<Person> getUserList() {
