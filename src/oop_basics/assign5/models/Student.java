@@ -1,9 +1,9 @@
-package oop_basics.assign5;
+package oop_basics.assign5.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student extends Person{
+public class Student extends Person {
     private List<GradeInfo> gradeReport;
     private String education;
 
@@ -12,7 +12,6 @@ public class Student extends Person{
         this.education = education;
         this.gradeReport = new ArrayList<>();
     }
-
 
     public List<GradeInfo> getGradeReport() {
         return gradeReport;
@@ -23,23 +22,19 @@ public class Student extends Person{
     }
 
     public double getAvgGrade() {
-        var setting = getGrade("Math");
-
-       List<Integer> test = new ArrayList<>();
+       List<Integer> allAvgResult = new ArrayList<>();
 
         for (GradeInfo info : gradeReport){
-            if(!test.contains(getGrade(info.getSubject()))){
-                test.add(getGrade(info.getSubject()));
-            }else {
-                System.out.println("is already here");
+            if(!allAvgResult.contains(getGrade(info.getSubject()))){
+                allAvgResult.add(getGrade(info.getSubject()));
             }
         }
         double totalSum = 0;
         int mean = 0;
-        for (Integer integer : test) {
+        for (Integer integer : allAvgResult) {
             totalSum += integer;
         }
-        mean = (int)totalSum / test.size();
+        mean = (int)totalSum / allAvgResult.size();
         return mean;
     }
     public int getGrade(String subject){

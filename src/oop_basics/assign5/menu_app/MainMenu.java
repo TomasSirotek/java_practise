@@ -1,6 +1,8 @@
-package oop_basics.assign5;
+package oop_basics.assign5.menu_app;
 
-public class MainMenu extends Menu{
+import oop_basics.assign5.menu_app.Menu;
+
+public class MainMenu extends Menu {
     /**
      * Creates an instance of the class with the given header text and
      * menu options.
@@ -14,6 +16,9 @@ public class MainMenu extends Menu{
 
     @Override
     protected void doAction(int option) {
-
+        switch (option){
+            case 1 : System.out.println("test");
+            case 2 : System.out.println("test2");
+        }
     }
 }

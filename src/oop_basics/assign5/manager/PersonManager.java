@@ -1,10 +1,15 @@
-package oop_basics.assign5;
+package oop_basics.assign5.manager;
+
+import oop_basics.assign5.models.Person;
+import oop_basics.assign5.models.Student;
+import oop_basics.assign5.models.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersonManager implements IPersonManager {
     List<Person> persons = new ArrayList<>();
+
 
     public PersonManager(){
     }

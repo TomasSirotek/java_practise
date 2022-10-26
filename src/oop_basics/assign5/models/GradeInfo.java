@@ -1,4 +1,4 @@
-package oop_basics.assign5;
+package oop_basics.assign5.models;
 
 public class GradeInfo {
     private String subject;

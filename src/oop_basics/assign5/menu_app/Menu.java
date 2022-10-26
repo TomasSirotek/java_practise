@@ -1,4 +1,4 @@
-package oop_basics.assign5;
+package oop_basics.assign5.menu_app;
 
 /**
  * Abstract class implementing the basic functionality of a console based
@@ -74,7 +74,7 @@ public abstract class Menu
      */
     private int getOption()
     {
-        return 0; // Dumm value.
+
     }
 
     /**
@@ -87,6 +87,10 @@ public abstract class Menu
      */
     private void showMenu()
     {
+        for (String option : menuItems){
+            System.out.println(option);
+        }
+        System.out.print("Choose your option : ");
     }
 
     /**

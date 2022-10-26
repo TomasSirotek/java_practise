@@ -1,10 +1,10 @@
-package oop_basics.assign5;
+package oop_basics.assign5.models;
 
 import java.util.*;
 
 import java.util.List;
 
-public class Teacher extends Person{
+public class Teacher extends Person {
 
     private List<String> subjects = new ArrayList<>();;
     private String initials;

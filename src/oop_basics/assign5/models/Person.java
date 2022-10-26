@@ -1,10 +1,9 @@
-package oop_basics.assign5;
+package oop_basics.assign5.models;
 
-public class Person {
+public abstract class Person {
     private int id;
     private String name;
     private String email;
-
 
     public Person(int id, String name) {
         this.id = id;
