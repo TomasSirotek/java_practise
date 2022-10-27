@@ -7,13 +7,13 @@ public abstract class BaseLoader {
         createObjects(data);
         downloadAdditionalFiles();
         cleanTempFile();
-        initalizeProfiles();
+        initializeProfiles();
     }
 
     abstract byte[] loadLocalData();
     abstract void createObjects(byte[] data);
     abstract void downloadAdditionalFiles();
-    abstract void initalizeProfiles();
+    abstract void initializeProfiles();
 
     protected void cleanTempFile(){
         System.out.println("Cleaning temp files.....");
