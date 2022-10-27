@@ -1,7 +1,6 @@
 package oop_basics.template_pattern;
 
 public abstract class BaseLoader {
-
     public void load(){
         byte[] data = loadLocalData();
         createObjects(data);
