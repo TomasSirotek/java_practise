@@ -1,5 +1,7 @@
 package oop_basics.assign5.menu_app;
 
+import java.io.IOException;
+
 /**
  * Abstract class implementing the basic functionality of a console based
  * menu class. A menu can be created by sub-classing this class and implement
@@ -74,7 +76,7 @@ public abstract class Menu
      */
     private int getOption()
     {
-
+        return 1;
     }
 
     /**
@@ -96,8 +98,9 @@ public abstract class Menu
     /**
      * Waits until the 'enter' key is pressed.
      */
-    protected void pause()
-    {
+    protected void pause() throws IOException {
+        System.out.println("Waiting please press enter to continue");
+        System.in.read();
     }
 
     /**
@@ -105,6 +108,8 @@ public abstract class Menu
      */
     protected void clear()
     {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
 
