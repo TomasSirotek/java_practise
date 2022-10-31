@@ -6,7 +6,6 @@ public class FirstLoader extends BaseLoader{
         System.out.println("Loading data for PRIMARY .....");
         return new byte[0];
     }
-
     @Override
     void createObjects(byte[] data) {
         System.out.println("Creating objects for PRIMARY ....");
