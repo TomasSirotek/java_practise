@@ -37,23 +37,27 @@ package world_of_zulu;
          */
         private void createRooms()
         {
-            Room outside, theater, pub, lab, office;
+            Room entrance, mainLobby, vault, securityOffice, serverRoom;
+            Item mainLobbyItem,mainLobbyItem2;
 
-            // create the rooms
-            outside = new Room("outside the main entrance of the university");
-            theater = new Room("in a lecture theater");
-            pub = new Room("in the campus pub");
-            lab = new Room("in a computing lab");
-            office = new Room("in the computing admin office");
+            entrance = new Room("outside entrance of the National Bank");
+            mainLobby = new Room("in a bank lobby and you fear no fear");
+            vault = new Room("in the vault");
+            securityOffice = new Room("in a security office");
+            serverRoom = new Room("in the server room");
 
+            mainLobbyItem = new Item("Hackable camera",30);
+            mainLobbyItem2 = new Item("Used chewing gum",2);
             // initialise room exits
-            outside.setExits(null, theater, lab, pub);
-            theater.setExits(null, null, null, outside);
-            pub.setExits(null, outside, null, null);
-            lab.setExits(outside, office, null, null);
-            office.setExits(null, null, null, lab);
+            entrance.setExit("north",mainLobby);
+            mainLobby.setExit("down",vault);
+            mainLobby.setItems(mainLobbyItem);
+            mainLobby.setItems(mainLobbyItem2);
+            vault.setExit("up",mainLobby);
+            securityOffice.setExit("east",mainLobby);
+            serverRoom.setExit("west",securityOffice);
 
-            currentRoom = outside;  // start game outside
+            currentRoom = entrance;
         }
 
         /**
@@ -81,24 +85,13 @@ package world_of_zulu;
         {
             System.out.println("\u001B[31m");
             System.out.println();
-            System.out.println("Welcome to the World of Zuul!");
-            System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+            System.out.println("Welcome to the World of Robbers");
+            System.out.println("World of Robbers is a new, incredibly exciting action game.");
+            System.out.println("Your goal is simple : Hit the bank's main vault, hack the server ,fly to Bahami ... do NOT get CAUGHT");
             System.out.println("Type 'help' if you need help.");
             System.out.println();
-            System.out.println("You are " + currentRoom.getDescription());
-            System.out.print("Exits: ");
-            if(currentRoom.northExit != null) {
-                System.out.print("north ");
-            }
-            if(currentRoom.eastExit != null) {
-                System.out.print("east ");
-            }
-            if(currentRoom.southExit != null) {
-                System.out.print("south ");
-            }
-            if(currentRoom.westExit != null) {
-                System.out.print("west ");
-            }
+
+            printLocationInfo();
             System.out.println();
         }
 
@@ -123,11 +116,22 @@ package world_of_zulu;
             else if (commandWord.equals("go")) {
                 goRoom(command);
             }
+            else if (commandWord.equals("look")) {
+                look();
+            }
+            else if (commandWord.equals("suicide")) {
+                suicide();
+                wantToQuit = quit(command);
+            }
             else if (commandWord.equals("quit")) {
                 wantToQuit = quit(command);
             }
 
             return wantToQuit;
+        }
+
+        private void suicide() {
+            System.out.println("You gave up on your dream, took a shotgun and painted your surrounding with your dump brain");
         }
 
         // implementations of user commands:
@@ -139,11 +143,11 @@ package world_of_zulu;
          */
         private void printHelp()
         {
-            System.out.println("You are lost. You are alone. You wander");
-            System.out.println("around at the university.");
+            System.out.println("You are lost. You are an pleb robber. You have no hope for ever being rich.. You wander");
+            System.out.println("around at the bank");
             System.out.println();
             System.out.println("Your command words are:");
-            System.out.println("   go quit help");
+            System.out.println(parser.showCommands());
         }
 
         /**
@@ -161,39 +165,14 @@ package world_of_zulu;
             String direction = command.getSecondWord();
 
             // Try to leave current room.
-            Room nextRoom = null;
-            if(direction.equals("north")) {
-                nextRoom = currentRoom.northExit;
-            }
-            if(direction.equals("east")) {
-                nextRoom = currentRoom.eastExit;
-            }
-            if(direction.equals("south")) {
-                nextRoom = currentRoom.southExit;
-            }
-            if(direction.equals("west")) {
-                nextRoom = currentRoom.westExit;
-            }
+            Room nextRoom = currentRoom.getExit(direction);
 
             if (nextRoom == null) {
                 System.out.println("There is no door!");
             }
             else {
                 currentRoom = nextRoom;
-                System.out.println("You are " + currentRoom.getDescription());
-                System.out.print("Exits: ");
-                if(currentRoom.northExit != null) {
-                    System.out.print("north ");
-                }
-                if(currentRoom.eastExit != null) {
-                    System.out.print("east ");
-                }
-                if(currentRoom.southExit != null) {
-                    System.out.print("south ");
-                }
-                if(currentRoom.westExit != null) {
-                    System.out.print("west ");
-                }
+                printLocationInfo();
                 System.out.println();
             }
         }
@@ -212,6 +191,20 @@ package world_of_zulu;
             else {
                 return true;  // signal that we want to quit
             }
+        }
+        /**
+         * "Look" was entered. Prints out the current option of directions in the current room
+         */
+        private void look()
+        {
+            System.out.println(currentRoom.getLongDescription());
+        }
+
+        private void printLocationInfo()
+        {
+            System.out.println(currentRoom.getLongDescription());
+            currentRoom.getItems().forEach(entry -> System.out.println("Item found -> " + entry.getDescription() + ", Weight: " + entry.getWeight()));
+         //   currentRoom.getItems().stream().map(Item::getDescription).forEach(System.out::println);
         }
     }
 

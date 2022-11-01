@@ -64,5 +64,12 @@ import java.util.Scanner;
                 return new Command(null, word2);
             }
         }
+        /**
+         * Print out a list of valid command words.
+         */
+        public String showCommands()
+        {
+           return commands.getCommandList();
+        }
     }
 
