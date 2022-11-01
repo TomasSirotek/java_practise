@@ -13,15 +13,7 @@ public class Item {
         return weight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }
