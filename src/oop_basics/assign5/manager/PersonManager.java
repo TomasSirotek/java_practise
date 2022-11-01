@@ -26,21 +26,31 @@ public class PersonManager implements IPersonManager {
     }
 
     public void removePersonById(int id){
-        for (Person p: persons) {
-            if(p.getId() == id){
-                persons.remove(p);
-            }
-        }
+        persons.removeIf(p -> p.getId() == id);
     }
 
     public List<Person> getAllPersons(){
         return this.persons;
     }
     public List<Student> getAllStudents(){
-        return null;
+        List<Student> studentList = new ArrayList<>();
+        for (Person p: persons
+        ) {
+            if(p instanceof Student){
+                studentList.add((Student) p);
+            }
+        }
+        return studentList;
     }
     public List<Teacher> getAllTeachers(){
-        return null;
+        List<Teacher> teachersList = new ArrayList<>();
+        for (Person p: persons
+             ) {
+            if(p instanceof Teacher){
+                teachersList.add((Teacher) p);
+            }
+        }
+        return teachersList;
     }
     public void operation(){
 

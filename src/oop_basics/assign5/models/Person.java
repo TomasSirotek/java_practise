@@ -9,6 +9,13 @@ public abstract class Person {
         this.id = id;
         this.name = name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Person p = (Person) obj;
+        return p.getId() == this.getId();
+    }
+
     public String getName() {
         return name;
     }

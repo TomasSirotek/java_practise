@@ -51,6 +51,6 @@ public class Teacher extends Person {
 
     @Override
     public String toString(){
-        return getId() + " " + getName() + " " + getEmail() + " " + getInitials() + " " + getSubjects();
+        return super.toString() + "    " + initials + "    " + subjects.get(0);
     }
 }

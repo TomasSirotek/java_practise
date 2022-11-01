@@ -22,20 +22,11 @@ public class Student extends Person {
     }
 
     public double getAvgGrade() {
-       List<Integer> allAvgResult = new ArrayList<>();
-
-        for (GradeInfo info : gradeReport){
-            if(!allAvgResult.contains(getGrade(info.getSubject()))){
-                allAvgResult.add(getGrade(info.getSubject()));
-            }
-        }
         double totalSum = 0;
-        int mean = 0;
-        for (Integer integer : allAvgResult) {
-            totalSum += integer;
+        for (GradeInfo info : gradeReport) {
+            totalSum += info.getGrade();
         }
-        mean = (int)totalSum / allAvgResult.size();
-        return mean;
+        return totalSum / gradeReport.size();
     }
     public int getGrade(String subject){
         for (GradeInfo info : gradeReport){
