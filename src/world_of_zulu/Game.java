@@ -1,7 +1,9 @@
 package world_of_zulu;
 
 
-    /**
+import java.util.List;
+
+/**
      *  This class is the main class of the "World of Zuul" application.
      *  "World of Zuul" is a very simple, text based adventure game.  Users
      *  can walk around some scenery. That's all. It should really be extended
@@ -38,7 +40,7 @@ package world_of_zulu;
         private void createRooms()
         {
             Room entrance, mainLobby, vault, securityOffice, serverRoom;
-            Item mainLobbyItem,mainLobbyItem2;
+            Item entranceItem,mainLobbyItem;
 
             entrance = new Room("outside entrance of the National Bank");
             mainLobby = new Room("in a bank lobby and you fear no fear");
@@ -47,15 +49,17 @@ package world_of_zulu;
             serverRoom = new Room("in the server room");
 
             mainLobbyItem = new Item("Hackable camera",30);
-            mainLobbyItem2 = new Item("Used chewing gum",2);
+            entranceItem = new Item("Used chewing gum",2);
             // initialise room exits
             entrance.setExit("north",mainLobby);
             mainLobby.setExit("down",vault);
-            mainLobby.setItems(mainLobbyItem);
-            mainLobby.setItems(mainLobbyItem2);
             vault.setExit("up",mainLobby);
             securityOffice.setExit("east",mainLobby);
             serverRoom.setExit("west",securityOffice);
+
+            // initialise room items
+            mainLobby.setItems(mainLobbyItem);
+            entrance.setItems(entranceItem);
 
             currentRoom = entrance;
         }
@@ -117,7 +121,7 @@ package world_of_zulu;
                 goRoom(command);
             }
             else if (commandWord.equals("look")) {
-                look();
+                printLocationInfo();
             }
             else if (commandWord.equals("suicide")) {
                 suicide();
@@ -192,14 +196,6 @@ package world_of_zulu;
                 return true;  // signal that we want to quit
             }
         }
-        /**
-         * "Look" was entered. Prints out the current option of directions in the current room
-         */
-        private void look()
-        {
-            System.out.println(currentRoom.getLongDescription());
-        }
-
         private void printLocationInfo()
         {
             System.out.println(currentRoom.getLongDescription());
