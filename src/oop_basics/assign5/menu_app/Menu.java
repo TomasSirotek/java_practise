@@ -1,6 +1,7 @@
 package oop_basics.assign5.menu_app;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Abstract class implementing the basic functionality of a console based
@@ -54,8 +55,7 @@ public abstract class Menu
      * Executes the menu until the EXIT_OPTION has been selected.
      * This is an implementation of the Template Method design pattern.
      */
-    public void run()
-    {
+    public void run() throws IOException {
         boolean done = false;
         while (!done)
         {
@@ -65,6 +65,8 @@ public abstract class Menu
             if (option == EXIT_OPTION)
             {
                 done = true;
+            }else {
+                pause();
             }
         }
     }
@@ -76,7 +78,24 @@ public abstract class Menu
      */
     private int getOption()
     {
-        return 1;
+        String input = null;
+        while (input == null){
+            System.out.println("Input valid input");
+            Scanner scanner = new Scanner(System.in);
+            input = scanner.nextLine();
+            try{
+                int option = Integer.parseInt(input);
+                if(option <= menuItems.length && option >= 0){
+                    return option;
+                }else {
+                    System.out.println("Need valid number!");
+                    input = null;
+                }
+            }catch(NumberFormatException e){
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 
     /**
@@ -89,8 +108,10 @@ public abstract class Menu
      */
     private void showMenu()
     {
-        for (String option : menuItems){
-            System.out.println(option);
+        System.out.println("*****" + header + "*****");
+        System.out.println("0 -> STOP");
+        for (int i = 0; i < menuItems.length; i++) {
+            System.out.println((i + 1) + ": " + menuItems[i]);
         }
         System.out.print("Choose your option : ");
     }
@@ -99,8 +120,9 @@ public abstract class Menu
      * Waits until the 'enter' key is pressed.
      */
     protected void pause() throws IOException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Waiting please press enter to continue");
-        System.in.read();
+        scanner.nextLine();
     }
 
     /**

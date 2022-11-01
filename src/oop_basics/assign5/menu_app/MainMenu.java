@@ -17,8 +17,12 @@ public class MainMenu extends Menu {
     @Override
     protected void doAction(int option) {
         switch (option){
-            case 1 : System.out.println("test");
-            case 2 : System.out.println("test2");
+            case 1 :
+                System.out.println("You choose option 1");
+            case 2 :
+                System.out.println("You choose option 2");
+            case 3 :
+                System.out.println("You choose option 3");
         }
     }
 }
