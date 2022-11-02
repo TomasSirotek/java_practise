@@ -193,7 +193,7 @@ import java.util.List;
                 return false;
             }
             else {
-                return true;  // signal that we want to quit
+                return true;
             }
         }
         private void printLocationInfo()
