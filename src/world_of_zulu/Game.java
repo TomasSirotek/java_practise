@@ -2,6 +2,7 @@ package world_of_zulu;
 
 
 import java.util.List;
+import java.util.Stack;
 
 /**
      *  This class is the main class of the "World of Zuul" application.
@@ -24,6 +25,8 @@ import java.util.List;
     {
         private Parser parser;
         private Room currentRoom;
+
+        Stack<Room> visitedRooms = new Stack<>();
 
         /**
          * Create the game and initialise its internal map.
@@ -123,6 +126,10 @@ import java.util.List;
             else if (commandWord.equals("look")) {
                 printLocationInfo();
             }
+            else if (commandWord.equals("back")) {
+               //  printLocationInfo();
+               leaveCurrentRoom();
+            }
             else if (commandWord.equals("suicide")) {
                 suicide();
                 wantToQuit = quit(command);
@@ -132,6 +139,10 @@ import java.util.List;
             }
 
             return wantToQuit;
+        }
+
+        private void leaveCurrentRoom() {
+
         }
 
         private void suicide() {
@@ -175,7 +186,10 @@ import java.util.List;
                 System.out.println("There is no door!");
             }
             else {
+                visitedRooms.push(currentRoom);
                 currentRoom = nextRoom;
+                visitedRooms.forEach(entry -> System.out.println("Previous room " + entry.getDescription()));
+
                 printLocationInfo();
                 System.out.println();
             }

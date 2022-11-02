@@ -100,4 +100,13 @@ public class Room
     public void setItems(Item item) {
         this.items.add(item);
     }
+
+    /**
+     * Leaves room and is used as the new current room
+     * @param direction The direction of the exit.
+     * @return room in the given direction
+     */
+    public Room leaveRoom(String direction) {
+        return exits.get(direction);
+    }
 }
