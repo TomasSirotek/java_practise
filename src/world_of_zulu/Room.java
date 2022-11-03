@@ -1,7 +1,5 @@
 package world_of_zulu;
-
 import java.util.*;
-
 /**
  * Class Room - a room in an adventure game.
  *
@@ -77,7 +75,7 @@ public class Room
     /**
      * Return a long description of this room, of the form:
      * You are in the kitchen.
-     * Exits: north west
+     * Exits: north
      * @return A description of the room, including exits.
      */
     public String getLongDescription()
