@@ -17,9 +17,7 @@ import java.util.Stack;
      *  rooms, creates the parser and starts the game.  It also evaluates and
      *  executes the commands that the parser returns.
      *
-     * @author  Michael Kölling and David J. Barnes
-     * @version 2011.07.31
-     */
+
 
     public class Game
     {
