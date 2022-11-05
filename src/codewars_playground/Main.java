@@ -321,10 +321,7 @@ public class Main {
         return String.valueOf(num);
 
     }
-    public static String numberOfString2(int num){
-        return String.valueOf(num);
 
-    }
 
 
     // "1 sheep...2 sheep...";
