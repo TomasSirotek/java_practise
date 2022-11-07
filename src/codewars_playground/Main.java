@@ -321,8 +321,6 @@ public class Main {
         return String.valueOf(num);
 
     }
-
-
     // "1 sheep...2 sheep...";
     private static String countingSheep(int num) {
        //
