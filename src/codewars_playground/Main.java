@@ -5,6 +5,7 @@ import unit_arrays.Array;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,8 +25,47 @@ public class Main {
 
         int[] result = hexStringToRGB("#FF9933");
 
+        Boolean[] array1 = {true,  true,  true,  false,
+                true,  true,  true,  true ,
+                true,  false, true,  false,
+                true,  false, false, true ,
+                true,  true,  true,  true ,
+                false, false, true,  true };
+
+        Boolean[] array2 = null;
+
+        Boolean[] array3 = {};
+
+
+        var test2 = countSheeps(array2);
+        System.out.println(test2);
 
     }
+    public static int countSheeps(Boolean[] arrayOfSheeps) {
+        Arrays.asList(arrayOfSheeps).stream().anyMatch(e -> e == null);
+
+      //  Arrays.asList(arrayOfSheeps).stream().anyMatch(x -> x == true);
+      // return (int) Arrays.stream(arrayOfSheeps).
+
+
+      return arrayOfSheeps == null || arrayOfSheeps.equals(false) ? (int) Arrays.stream(arrayOfSheeps).filter(i -> i).count() : 0;
+
+     //   return (int) Arrays.stream(arrayOfSheeps).filter(i -> i).count();
+
+//        if(arrayOfSheeps.length < 0 || arrayOfSheeps == null){
+//            return 0;
+//        }
+//        int totalCount = 0;
+//        for (int i = 0; i < arrayOfSheeps.length; i++) {
+//            if(arrayOfSheeps[i]){
+//                totalCount++;
+//            }
+//        }
+//        return totalCount;
+    }
+
+
+
 
     public static int[] hexStringToRGB(String hex) {
         ArrayList<Integer> hexDecode = new ArrayList<>();
@@ -326,8 +366,6 @@ public class Main {
        //
         return "";
     }
-
-
     public static double sum(double[] numbers) {
         double sum = 0;
         for (double number : numbers) {
