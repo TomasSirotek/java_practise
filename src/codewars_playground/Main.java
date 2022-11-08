@@ -42,26 +42,9 @@ public class Main {
 
     }
     public static int countSheeps(Boolean[] arrayOfSheeps) {
-        Arrays.asList(arrayOfSheeps).stream().anyMatch(e -> e == null);
-
-      //  Arrays.asList(arrayOfSheeps).stream().anyMatch(x -> x == true);
-      // return (int) Arrays.stream(arrayOfSheeps).
-
-
-      return arrayOfSheeps == null || arrayOfSheeps.equals(false) ? (int) Arrays.stream(arrayOfSheeps).filter(i -> i).count() : 0;
-
-     //   return (int) Arrays.stream(arrayOfSheeps).filter(i -> i).count();
-
-//        if(arrayOfSheeps.length < 0 || arrayOfSheeps == null){
-//            return 0;
-//        }
-//        int totalCount = 0;
-//        for (int i = 0; i < arrayOfSheeps.length; i++) {
-//            if(arrayOfSheeps[i]){
-//                totalCount++;
-//            }
-//        }
-//        return totalCount;
+        return (int)Arrays.stream(arrayOfSheeps)
+                .filter(Objects::nonNull)
+                .filter(Boolean::booleanValue).count();
     }
 
 
