@@ -6,6 +6,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -32,23 +33,27 @@ public class Main {
                 true,  true,  true,  true ,
                 false, false, true,  true };
 
-        Boolean[] array2 = null;
-
-        Boolean[] array3 = {};
-
-
-        var test2 = countSheeps(array2);
+        var test2 = countSheeps(array1);
         System.out.println(test2);
 
+
+        var testtt = reverse(5);
+        
+
+
+
+        Arrays.stream(testtt).forEach(System.out::println);
+    }
+
+    public static int[] reverse(int n){
+        //your code
+        return Arrays.stream(IntStream.range( n + 1,n).toArray()).sorted().toArray();
     }
     public static int countSheeps(Boolean[] arrayOfSheeps) {
         return (int)Arrays.stream(arrayOfSheeps)
                 .filter(Objects::nonNull)
                 .filter(Boolean::booleanValue).count();
     }
-
-
-
 
     public static int[] hexStringToRGB(String hex) {
         ArrayList<Integer> hexDecode = new ArrayList<>();
