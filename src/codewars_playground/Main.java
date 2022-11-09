@@ -38,9 +38,6 @@ public class Main {
 
 
         var testtt = reverse(5);
-        
-
-
 
         Arrays.stream(testtt).forEach(System.out::println);
     }
@@ -53,6 +50,22 @@ public class Main {
         return (int)Arrays.stream(arrayOfSheeps)
                 .filter(Objects::nonNull)
                 .filter(Boolean::booleanValue).count();
+    }
+
+    static class Car{
+        private String name;
+        private int id;
+
+        public Car(String name,int id){
+            this.name = name;
+            this.id = id;
+        }
+    }
+
+    public static Car returnCar(){
+        List<Car> carList = List.of(new Car("test",2));
+        carList.stream().filter(Objects::nonNull).forEach(System.out::println);
+        return new Car("test",3);
     }
 
     public static int[] hexStringToRGB(String hex) {
