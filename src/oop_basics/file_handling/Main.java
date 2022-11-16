@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         printFileContents();
-         ddToFile("Suck me jin jang");
+        addToFile("Suck me jin jang");
         addTextAtLine("Testik",2);
         printFileContents();
     }
