@@ -1,39 +1,36 @@
 package oop_basics.file_handling;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
 
-    private static String path = "/Users/Tomas/Desktop/fileToRead.txt";
+    private static final String path = "/Users/Tomas/Desktop/fileToRead.txt";
 
     public static void main(String[] args) {
         printFileContents();
-        addToFile("Suck me jin jang");
-        addTextAtLine("Testik",2);
-        printFileContents();
+        // addToFile("Suck me jin jang");
+      //  addTextAtLine("Testik",4);
+       // printFileContents();
     }
 
 
     private static void addTextAtLine(String text,int lineNumber){
         try {
-            String fileInput = "";
+            StringBuilder fileInput = new StringBuilder();
             int countLines = 0;
             FileReader reader = new FileReader(path);
             Scanner scanner = new Scanner(reader);
             while (scanner.hasNext()) {
-                fileInput += scanner.nextLine() + "\r\n";
+                fileInput.append(scanner.nextLine()).append("\r\n");
                 if(countLines == lineNumber){
-                    fileInput += text + "\r\n";
+                    fileInput.append(text).append("\r\n");
                 }
                 countLines++;
             }
             reader.close();
 
-            FileWriter fileWriter = new FileWriter(path);
+            FileWriter fileWriter = new FileWriter(path,true);
             fileWriter.append(text);
             fileWriter.close();
 
@@ -55,13 +52,17 @@ public class Main {
 
 
     private static void printFileContents() {
-        try {
-            FileReader reader = new FileReader(path);
-            Scanner scanner = new Scanner(reader);
-            while (scanner.hasNext()) {
-                System.out.println(scanner.nextLine());
+        System.out.println("----------");
+
+
+
+        try ( FileReader reader = new FileReader(path);
+              BufferedReader bufferedReader1 = new BufferedReader(reader)){
+
+            String line;
+            while ((line  = bufferedReader1.readLine()) != null){
+                System.out.println(line);
             }
-            reader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
