@@ -50,10 +50,6 @@ public class Main {
         }
     }
 
-        System.out.println("----------");
-        System.out.println("----------");
-        System.out.println("----------");
-
     private static void printFileContents() {
         System.out.println("----------");
 
