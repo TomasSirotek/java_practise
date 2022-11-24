@@ -1,12 +1,23 @@
 package codewars_playground;
 
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 public class MoreSpace {
     public static void main(String[] args) {
 
         System.out.println(bmi(80,1.80));
 
+        System.out.println(findUniq(new double[]{0,1,0}));
 
+    }
 
+    public static double findUniq(double arr[]) {
+
+     return Arrays.stream(arr).boxed()
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet().stream().filter(e->e.getValue() == 1).findFirst().get().getKey();
     }
 
     public static String bmi(double weight, double height) {
