@@ -16,7 +16,7 @@ public class MoreSpace {
     public static double findUniq(double arr[]) {
         var test = 3;
         double arr2[] = null;
-
+System.out.println("here");
         return Arrays.stream(arr).boxed()
                 .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
                 .entrySet().stream().filter(e->e.getValue() == 1).findFirst().get().getKey();
