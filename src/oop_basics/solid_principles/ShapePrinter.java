@@ -5,12 +5,19 @@ import java.util.List;
 public class ShapePrinter {
 
     // Single responsibility ( does only one thing that is needed )
-    public String json(int sum){
-        return "{shapesSum: %s}".formatted(sum);
+
+   private final IAreaCalculator areaCalculator;
+
+    public ShapePrinter(IAreaCalculator areaCalculator) {
+        this.areaCalculator = areaCalculator;
     }
 
-    public String csv(int sum){
-        return "shapesSum, %s".formatted(sum);
+    public String json(List<Shape> shapes){
+        return "{shapesSum: %s}".formatted(areaCalculator.sum(shapes));
+    }
+
+    public String csv (List<Shape> shapes){
+        return "shapesSum, %s".formatted(areaCalculator.sum(shapes));
     }
 
 }
