@@ -6,6 +6,6 @@ public abstract class AbstractCLASS {
     public abstract String getStringValue();
 
     public AbstractCLASS(){
-
+        System.out.println("hello woorld");
     }
 }
