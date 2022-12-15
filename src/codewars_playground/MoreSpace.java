@@ -13,6 +13,11 @@ public class MoreSpace {
 
     }
 
+    public static int bouncingBall(double h, double bounce, double window) {
+        // your code
+        return 0;
+    }
+
     public static double findUniq(double arr[]) {
         var test = 3;
         double arr2[] = null;
