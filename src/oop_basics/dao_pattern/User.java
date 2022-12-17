@@ -1,7 +1,6 @@
 package oop_basics.dao_pattern;
 
-public class Entity {
-    public static class User {
+public class User {
 
         private int id;
         private String name;
@@ -33,4 +32,4 @@ public class Entity {
             this.id = id;
         }
     }
-}
+
