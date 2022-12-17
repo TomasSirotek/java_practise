@@ -25,7 +25,6 @@ public class UserDAO implements IUserDAO {
         try(Connection cnn = connection.getConnection()){
 
             String sql = "SELECT * FROM user";
-
             PreparedStatement  preparedStatement = cnn.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -37,7 +36,7 @@ public class UserDAO implements IUserDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return Stream.empty();
     }
 
     @Override

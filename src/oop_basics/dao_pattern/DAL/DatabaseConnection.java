@@ -14,20 +14,20 @@ public class DatabaseConnection implements IDatabaseConnection{
 
     private static SQLServerDataSource dataSource;
 
-    private DatabaseConnection(){}
+    private DatabaseConnection(){
+        dataSource = new SQLServerDataSource();
+
+        dataSource.setDatabaseName("db.name");
+        dataSource.setUser("db.username");
+        dataSource.setPassword("db.password");
+        dataSource.setServerName("db.server");
+        dataSource.setPortNumber(Integer.parseInt("db.port"));
+        dataSource.setTrustServerCertificate(true);
+    }
 
     public static DatabaseConnection getInstance()  {
         if (instance == null) {
             instance = new DatabaseConnection();
-            dataSource = new SQLServerDataSource();
-
-            dataSource.setDatabaseName("db.name");
-            dataSource.setUser("db.username");
-            dataSource.setPassword("db.password");
-            dataSource.setServerName("db.server");
-            dataSource.setPortNumber(Integer.parseInt("db.port"));
-            dataSource.setTrustServerCertificate(true);
-
         }
         return instance;
     }
