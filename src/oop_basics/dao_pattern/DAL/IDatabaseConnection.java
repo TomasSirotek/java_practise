@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface IDatabaseConnection {
-    Connection getConnection() throws SQLServerException;
+    Connection getConnection() throws SQLException;
 //    void executeQuery(String query) throws SQLException;
 //    ResultSet getResultSet();
 }

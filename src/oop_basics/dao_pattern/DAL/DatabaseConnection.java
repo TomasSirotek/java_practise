@@ -1,12 +1,13 @@
 package oop_basics.dao_pattern.DAL;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 
 public class DatabaseConnection implements IDatabaseConnection{
 
@@ -14,18 +15,18 @@ public class DatabaseConnection implements IDatabaseConnection{
 
     private static SQLServerDataSource dataSource;
 
-    private DatabaseConnection(){
+    private DatabaseConnection() {
         dataSource = new SQLServerDataSource();
 
-        dataSource.setDatabaseName("db.name");
-        dataSource.setUser("db.username");
-        dataSource.setPassword("db.password");
-        dataSource.setServerName("db.server");
-        dataSource.setPortNumber(Integer.parseInt("db.port"));
+        dataSource.setDatabaseName("dev_local");
+        dataSource.setUser("sa");
+        dataSource.setPassword("ADMIN_$TROP");
+        dataSource.setServerName("localhost");
+        dataSource.setPortNumber(1433);
         dataSource.setTrustServerCertificate(true);
     }
 
-    public static DatabaseConnection getInstance()  {
+    public static DatabaseConnection getInstance() {
         if (instance == null) {
             instance = new DatabaseConnection();
         }
@@ -33,7 +34,7 @@ public class DatabaseConnection implements IDatabaseConnection{
     }
 
     @Override
-    public Connection getConnection() throws SQLServerException {
+    public Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
 

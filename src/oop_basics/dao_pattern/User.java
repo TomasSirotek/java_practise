@@ -3,12 +3,18 @@ package oop_basics.dao_pattern;
 public class User {
 
         private int id;
-        private String name;
+        private String user_name;
+
+        private String email;
+
+        private String password_hash;
 
 
-        public User(int id, String name) {
+        public User(int id, String name, String email, String passwordHash) {
             this.id = id;
-            this.name = name;
+            this.user_name = name;
+            this.email = email;
+            password_hash = passwordHash;
         }
 
         @Override
@@ -17,11 +23,11 @@ public class User {
         }
 
         public String getName() {
-            return name;
+            return user_name;
         }
 
         public void setName(String name) {
-            this.name = name;
+            this.user_name = name;
         }
 
         public int getId() {
