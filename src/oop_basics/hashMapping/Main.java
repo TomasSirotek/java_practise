@@ -49,7 +49,6 @@ public class Main {
             System.out.println(userId);
 
         System.out.println("--------");
-        System.out.println(userId.get("Zelda"));
 
         System.out.println(userId.get("Zelda"));
         System.out.println(userId.containsKey("Adam"));
