@@ -10,7 +10,7 @@ import javafx.scene.layout.StackPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static oop_basics.dao_pattern.DAL.DAOUtils.loadFxmlPage;
+import static oop_basics.dao_pattern.BLL.DAOUtils.loadFxmlPage;
 
 public class DashBoardController implements Initializable {
 
