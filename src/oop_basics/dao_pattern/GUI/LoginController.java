@@ -7,15 +7,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import oop_basics.dao_pattern.BLL.UserManager;
-import oop_basics.dao_pattern.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -34,30 +35,37 @@ public class LoginController implements Initializable {
             log_in.setOnAction(this::login);
     }
 
-    private void login(ActionEvent actionEvent) {
-        User user = null;
-
-
+    private void login(ActionEvent actionEvent)  {
         CurrentUser currentUser = CurrentUser.getInstance();
-        currentUser.setEmail(user_email.getText());
-        currentUser.setPassword(user_password.getText());
-
-        if(!currentUser.isAuthorized()){
-            Parent root = null;
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources2/dashboardView.fxml"));
-                root = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        currentUser.login(user_email.getText(),user_password.getText());
+        try {
+            if(currentUser.isAuthorized()){
+                switchScenesToDashboard(actionEvent);
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("invalid");
+                alert.show();
             }
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-            stage.show();
-            ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
 
+    }
+
+    private void switchScenesToDashboard(ActionEvent actionEvent) {
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources2/dashboardView.fxml"));
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
+        ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }
 
 

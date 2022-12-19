@@ -1,6 +1,12 @@
 package oop_basics.dao_pattern.GUI;
 
 
+import oop_basics.dao_pattern.BLL.UserManager;
+import oop_basics.dao_pattern.User;
+
+import java.sql.SQLException;
+import java.util.Optional;
+
 /**
  * Singleton design pattern because there can be only one
  */
@@ -10,15 +16,19 @@ public class CurrentUser {
 
     // Private static variable to hold the singleton instance
     private static CurrentUser instance;
+    private static UserManager userManager;
 
     // Private variables to hold the user's name and password
     private String email;
     private String password;
 
+    private boolean isLoggedIn;
+
     // Public static method to get the singleton instance
     public static CurrentUser getInstance() {
         if (instance == null) {
             instance = new CurrentUser();
+            userManager = new UserManager();
         }
         return instance;
     }
@@ -32,19 +42,30 @@ public class CurrentUser {
         this.email = name;
     }
 
-    public String getPassword() {
-        return password;
+    public void login(String email,String password){
+        this.email = email;
+        this.password = password;
+        this.isLoggedIn = true;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void logout(){
+        this.email = null;
+        this.password = null;
+        this.isLoggedIn = false;
+    }
+
+    public boolean isLoggedIn() {
+        return this.isLoggedIn;
     }
 
     // Method to check whether the user is authorized
-    public boolean isAuthorized() {
+    public boolean isAuthorized() throws SQLException {
         // Check the name and password against some criteria to determine
         // whether the user is authorized
-        return email.equals("admin") && password.equals("password");
+        Optional<User> user = userManager.getByEmail(this.email);
+
+        return user.map(User::getEmail).orElseThrow().equals(this.email) &&
+                user.map(User::getPassword_hash).orElseThrow().equals(this.password);
     }
 
 
