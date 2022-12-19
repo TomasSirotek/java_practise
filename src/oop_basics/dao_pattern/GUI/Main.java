@@ -6,8 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 /**
  * @author pgn
  */
@@ -15,7 +13,7 @@ public final class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/resources/baseView.fxml")));
+        Parent root = FXMLLoader.load(getClass().getResource("../resources2/baseView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);

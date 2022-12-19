@@ -19,7 +19,7 @@ public class User {
 
         @Override
         public String toString() {
-            return "Entity{}";
+            return id + " " + user_name + " " + email + " " + password_hash;
         }
 
         public String getName() {

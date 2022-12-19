@@ -7,21 +7,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
-import java.util.Spliterator;
-import java.util.Spliterators;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 /**
- * THIS IS IN THE MEMORT
  */
 public class UserDAO implements IUserDAO {
-    public static void main(String[] args) {
-        IUserDAO userDAO = new UserDAO();
-        var test = userDAO.getAll();
-    }
 
     // Specify data source
 
@@ -29,33 +22,31 @@ public class UserDAO implements IUserDAO {
     DatabaseConnection connection = DatabaseConnection.getInstance();
 
     @Override
-
     public Stream<User> getAll() {
-        try(Connection cnn = connection.getConnection()){
-
+        ResultSet rs = null;
+        try (Connection cnn = connection.getConnection()) {
             String sql = "SELECT * FROM [user]";
-            PreparedStatement  preparedStatement = cnn.prepareStatement(sql);
-            ResultSet rs = preparedStatement.executeQuery();
+            var preparedStatement = cnn.prepareStatement(sql);
+            rs = preparedStatement.executeQuery();
 
-            return StreamSupport.stream(new Spliterators.AbstractSpliterator<User>(Long.MAX_VALUE,
-                    Spliterator.ORDERED) {
-                @Override
-                public boolean tryAdvance(Consumer<? super User> action) {
-                    try {
-                        if(!rs.next()){
-                            return false;
-                        }
-                        action.accept(createUser(rs));
-                        return true;
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-
-            },false);
+            return mapRsToStream(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private Stream<User> mapRsToStream(ResultSet set){
+        return Stream.generate(() -> {
+            try{
+                if(set.next()){
+                    return createUser(set);
+                }else {
+                    return null;
+                }
+            }catch (SQLException e){
+                throw new RuntimeException(e);
+            }
+        }).takeWhile(p -> p != null);
     }
 
     private User createUser(ResultSet rs) throws SQLException {
@@ -66,13 +57,44 @@ public class UserDAO implements IUserDAO {
         );
     }
 
+
     @Override
-    public Optional<User> getById() {
-        return Optional.empty();
+    public Optional<User> getById(int id) throws SQLException {
+        ResultSet resultSet = null;
+        try (Connection cnn = connection.getConnection()) {
+            String sql = "SELECT * FROM [user] WHERE id = ?";
+            var statement = cnn.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return Optional.of(createUser(resultSet));
+            } else {
+                return Optional.empty();
+            }
+        }
     }
 
     @Override
-    public User create(User entity) {
+    public Optional<User> getByEmail(String email) throws SQLException {
+        ResultSet resultSet = null;
+        try (Connection cnn = connection.getConnection()) {
+            String sql = "SELECT * FROM [user] WHERE email = ?";
+            var statement = cnn.prepareStatement(sql);
+            statement.setString(1, email);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return Optional.of(createUser(resultSet));
+            } else {
+                return Optional.empty();
+            }
+        }
+    }
+
+    @Override
+    public User create(User entity) throws SQLException {
+        if(getById(entity.getId()).isPresent()){
+            // return already exist
+        }
         return null;
     }
 
