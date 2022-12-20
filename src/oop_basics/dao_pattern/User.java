@@ -1,5 +1,7 @@
 package oop_basics.dao_pattern;
 
+import java.util.List;
+
 public class User {
 
     private int id;
@@ -9,6 +11,7 @@ public class User {
 
     private String password_hash;
 
+    private List<Role> roles;
 
     public User(int id, String name, String email, String passwordHash) {
         this.id = id;

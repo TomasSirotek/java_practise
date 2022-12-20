@@ -15,6 +15,8 @@ import org.jooq.impl.DSL.*;
 
 import org.jooq.Record;
 import static org.jooq.Table.*;
+import static org.jooq.impl.DSL.table;
+
 /**
  */
 public class UserDAO implements IUserDAO {
@@ -23,13 +25,16 @@ public class UserDAO implements IUserDAO {
 
 
         IUserDAO userDAO = new UserDAO();
-        var stream  = userDAO.getAll();
+//        var stream  = userDAO.getAll();
+//
+//       stream.forEach(System.out::println);
+//
+//        var resultUserId = userDAO.getById(2);
+//
+//        resultUserId.ifPresent(System.out::println) ;
 
-       stream.forEach(System.out::println);
-
-        var resultUserId = userDAO.getById(2);
-
-        resultUserId.ifPresent(System.out::println) ;
+        var email = userDAO.getByEmail("dadin@gmail.com");
+        email.ifPresent(System.out::println);
     }
 
     // Specify data source
@@ -44,7 +49,7 @@ public class UserDAO implements IUserDAO {
             // ... and then profit from the new Collection methods
             userStream = new ArrayList<>(DSL.using(c)
                     .select()
-                    .from("[user]")
+                    .from(table("[user]"))
                     // We can use lambda expressions to map jOOQ Records
                     .fetch().into(User.class));
         }
@@ -68,26 +73,31 @@ public class UserDAO implements IUserDAO {
     @Override
     public Optional<User> getByEmail(String email) throws SQLException {
         try (Connection cnn = connection.getConnection()) {
-            Result<Record> result = DSL.using(cnn)
+            return DSL.using(cnn)
                     .select()
                     .from("[user]")
                     .where("email = ?",email)
-                    .fetch();
-            return result.isNotEmpty()
-                    ? Optional.of(result.get(0).into(User.class))
-                    : Optional.empty();
+                    .fetchOptional(it -> new User(
+                            (Integer)it.getValue("id"),
+                            (String) it.getValue("user_name"),
+                            (String) it.getValue("email"),
+                            (String) it.getValue("password_hash")
+                    ));
         }
     }
 
     @Override
     public User create(User entity) throws SQLException {
-            return  null;
-//        try (Connection cnn = connection.getConnection()) {
-//            var result = DSL.using(cnn).insertInto(Table<User);
+        try (Connection cnn = connection.getConnection()) {
+//            InsertValuesStep3<AuthorRecord, Integer, String, String> step =
+//                    create.insertInto(AUTHOR, AUTHOR.ID, AUTHOR.FIRST_NAME, AUTHOR.LAST_NAME);
+//            step.values("A", "B", "C");
+//            var result = DSL.using(cnn).insertInto("table").values;
 //            return result.isNotEmpty()
 //                    ? result.get(0).into(User.class)
 //                    : null;
-//        }
+        }
+        return null;
     }
 
     @Override
