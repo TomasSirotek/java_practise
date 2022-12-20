@@ -1,4 +1,4 @@
-package oop_basics.dao_pattern.DAL;
+package oop_basics.dao_pattern.BLL;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;

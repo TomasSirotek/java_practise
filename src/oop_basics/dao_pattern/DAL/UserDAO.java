@@ -1,20 +1,31 @@
 package oop_basics.dao_pattern.DAL;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import oop_basics.dao_pattern.User;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
+
+import org.jooq.Schema;
+import org.jooq.impl.DSL;
+import org.jooq.impl.DSL.*;
+
+import org.jooq.Record;
+import org.jooq.impl.Internal;
+//import org.jooq.impl.DSL;
 
 /**
  */
 public class UserDAO implements IUserDAO {
+
+    public static void main(String[] args) throws SQLException {
+        IUserDAO userDAO = new UserDAO();
+        var stream  = userDAO.getAll();
+
+        stream.forEach(User::getEmail);
+    }
 
     // Specify data source
 
@@ -22,39 +33,37 @@ public class UserDAO implements IUserDAO {
     DatabaseConnection connection = DatabaseConnection.getInstance();
 
     @Override
-    public Stream<User> getAll() {
-        ResultSet rs = null;
-        try (Connection cnn = connection.getConnection()) {
-            String sql = "SELECT * FROM [user]";
-            var preparedStatement = cnn.prepareStatement(sql);
-            rs = preparedStatement.executeQuery();
+    public Stream<User> getAll() throws SQLException {
 
-            return mapRsToStream(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        List<User> userStream;
+
+        try (Connection c = connection.getConnection()) {
+           String sql = "select * from [user]";
+
+            // ... and then profit from the new Collection methods
+            userStream = new ArrayList<>(DSL.using(c)
+                    .fetch(sql)
+                    // We can use lambda expressions to map jOOQ Records
+                    .map(this::createUser));
         }
-    }
+            return userStream.stream();
+        }
 
-    private Stream<User> mapRsToStream(ResultSet set){
-        return Stream.generate(() -> {
-            try{
-                if(set.next()){
-                    return createUser(set);
-                }else {
-                    return null;
-                }
-            }catch (SQLException e){
-                throw new RuntimeException(e);
-            }
-        }).takeWhile(p -> p != null);
-    }
 
-    private User createUser(ResultSet rs) throws SQLException {
-        return new User(rs.getInt("id"),
-                rs.getString("user_name"),
-                rs.getString("email"),
-                rs.getString("password_hash")
+
+
+    private User createUser(Record record)  {
+        return new User(
+                record.getValue("id", Integer.class),
+                record.getValue("user_name", String.class),
+                record.getValue("email", String.class),
+                record.getValue("password_hash", String.class)
         );
+//        return new User(rs.getInt("id"),
+//                rs.getString("user_name"),
+//                rs.getString("email"),
+//                rs.getString("password_hash")
+//        );
     }
 
 
@@ -67,7 +76,7 @@ public class UserDAO implements IUserDAO {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                return Optional.of(createUser(resultSet));
+                return Optional.empty();
             } else {
                 return Optional.empty();
             }

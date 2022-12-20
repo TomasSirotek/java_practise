@@ -1,10 +1,6 @@
 package oop_basics.dao_pattern.DAL;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.*;
-import java.util.Properties;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
@@ -16,6 +12,10 @@ public class DatabaseConnection implements IDatabaseConnection{
     private static SQLServerDataSource dataSource;
 
     private DatabaseConnection() {
+        setCredentials();
+    }
+
+    private static void setCredentials() {
         dataSource = new SQLServerDataSource();
 
         dataSource.setDatabaseName("dev_local");
@@ -38,21 +38,10 @@ public class DatabaseConnection implements IDatabaseConnection{
         return dataSource.getConnection();
     }
 
-//    @Override
-//    public void executeQuery(String query) throws SQLException {
-//        PreparedStatement statement = connection.prepareStatement(query);
-//        statement.executeQuery(query);
-//    }
-//    @Override
-//    public ResultSet getResultSet() {
-//        return null;
-//    }
-//
-//    private static Properties loadConfigFile() throws IOException {
-//        try(FileInputStream fs = new FileInputStream("MSSQL_FILE")){
-//            Properties properties = new Properties();
-//            properties.load(fs);
-//            return properties;
-//        }
-//    }
+    @Override
+    public void executeQuery(Connection connection,String query) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.executeQuery(query);
+    }
+
 }

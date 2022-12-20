@@ -11,12 +11,11 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class UserManager {
-    // -> inject DAO
-    private IDAOFactory daoFactory = new DAOFactory();
     private final IUserDAO userDAO;
 
     public UserManager() {
-        userDAO = this.daoFactory.createUserDAO();
+        IDAOFactory daoFactory = new DAOFactory();
+        userDAO = daoFactory.createUserDAO();
     }
 
     public Optional<User> getByEmail(String email) throws SQLException{
