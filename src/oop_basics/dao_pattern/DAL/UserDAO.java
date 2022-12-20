@@ -8,23 +8,28 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Stream;
 
+import org.jooq.Result;
 import org.jooq.Schema;
 import org.jooq.impl.DSL;
 import org.jooq.impl.DSL.*;
 
 import org.jooq.Record;
-import org.jooq.impl.Internal;
-//import org.jooq.impl.DSL;
-
+import static org.jooq.Table.*;
 /**
  */
 public class UserDAO implements IUserDAO {
 
     public static void main(String[] args) throws SQLException {
+
+
         IUserDAO userDAO = new UserDAO();
         var stream  = userDAO.getAll();
 
-        stream.forEach(User::getEmail);
+       stream.forEach(System.out::println);
+
+        var resultUserId = userDAO.getById(2);
+
+        resultUserId.ifPresent(System.out::println) ;
     }
 
     // Specify data source
@@ -34,77 +39,55 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public Stream<User> getAll() throws SQLException {
-
         List<User> userStream;
-
         try (Connection c = connection.getConnection()) {
-           String sql = "select * from [user]";
-
             // ... and then profit from the new Collection methods
             userStream = new ArrayList<>(DSL.using(c)
-                    .fetch(sql)
+                    .select()
+                    .from("[user]")
                     // We can use lambda expressions to map jOOQ Records
-                    .map(this::createUser));
+                    .fetch().into(User.class));
         }
             return userStream.stream();
         }
 
-
-
-
-    private User createUser(Record record)  {
-        return new User(
-                record.getValue("id", Integer.class),
-                record.getValue("user_name", String.class),
-                record.getValue("email", String.class),
-                record.getValue("password_hash", String.class)
-        );
-//        return new User(rs.getInt("id"),
-//                rs.getString("user_name"),
-//                rs.getString("email"),
-//                rs.getString("password_hash")
-//        );
-    }
-
-
     @Override
     public Optional<User> getById(int id) throws SQLException {
-        ResultSet resultSet = null;
         try (Connection cnn = connection.getConnection()) {
-            String sql = "SELECT * FROM [user] WHERE id = ?";
-            var statement = cnn.prepareStatement(sql);
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return Optional.empty();
-            } else {
-                return Optional.empty();
-            }
+            Result<Record> result = DSL.using(cnn)
+                    .select()
+                    .from("[user]")
+                    .where("id = ?",id)
+                    .fetch();
+            return result.isNotEmpty()
+                    ? Optional.of(result.get(0).into(User.class))
+                    : Optional.empty();
         }
     }
 
     @Override
     public Optional<User> getByEmail(String email) throws SQLException {
-        ResultSet resultSet = null;
         try (Connection cnn = connection.getConnection()) {
-            String sql = "SELECT * FROM [user] WHERE email = ?";
-            var statement = cnn.prepareStatement(sql);
-            statement.setString(1, email);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return Optional.of(createUser(resultSet));
-            } else {
-                return Optional.empty();
-            }
+            Result<Record> result = DSL.using(cnn)
+                    .select()
+                    .from("[user]")
+                    .where("email = ?",email)
+                    .fetch();
+            return result.isNotEmpty()
+                    ? Optional.of(result.get(0).into(User.class))
+                    : Optional.empty();
         }
     }
 
     @Override
     public User create(User entity) throws SQLException {
-        if(getById(entity.getId()).isPresent()){
-            // return already exist
-        }
-        return null;
+            return  null;
+//        try (Connection cnn = connection.getConnection()) {
+//            var result = DSL.using(cnn).insertInto(Table<User);
+//            return result.isNotEmpty()
+//                    ? result.get(0).into(User.class)
+//                    : null;
+//        }
     }
 
     @Override
