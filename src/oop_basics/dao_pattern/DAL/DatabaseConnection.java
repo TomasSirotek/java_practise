@@ -44,10 +44,4 @@ public class DatabaseConnection implements IDatabaseConnection{
         return dataSource.getConnection();
     }
 
-    @Override
-    public void executeQuery(Connection connection,String query) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.executeQuery(query);
-    }
-
 }

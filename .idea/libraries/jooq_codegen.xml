@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="jooq.codegen" type="repository">
+    <properties maven-id="org.jooq:jooq-codegen:3.17.6" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jooq-codegen-3.17.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jooq-3.17.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/r2dbc-spi-0.9.1.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reactive-streams-1.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jakarta.xml.bind-api-3.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jakarta.activation-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jooq-meta-3.17.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

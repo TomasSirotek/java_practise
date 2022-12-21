@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import org.jooq.Result;
+import org.jooq.SQLDialect;
 import org.jooq.Schema;
 import org.jooq.impl.DSL;
 import org.jooq.impl.DSL.*;
@@ -16,7 +17,6 @@ import org.jooq.impl.DSL.*;
 import org.jooq.Record;
 import static org.jooq.Table.*;
 import static org.jooq.impl.DSL.table;
-
 /**
  */
 public class UserDAO implements IUserDAO {
@@ -47,7 +47,7 @@ public class UserDAO implements IUserDAO {
         List<User> userStream;
         try (Connection c = connection.getConnection()) {
             // ... and then profit from the new Collection methods
-            userStream = new ArrayList<>(DSL.using(c)
+            userStream = new ArrayList<>(DSL.using(c, SQLDialect.MYSQL)
                     .select()
                     .from(table("[user]"))
                     // We can use lambda expressions to map jOOQ Records

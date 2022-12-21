@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static oop_basics.dao_pattern.BLL.DAOUtils.loadFxmlPage;
@@ -22,13 +23,17 @@ public class DashBoardController implements Initializable {
 
     private final CurrentUser currentUser = CurrentUser.getInstance();
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        this.current_user_email.setText(currentUser.getEmail());
     }
 
+
     public void btnUsersOnClick(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = loadFxmlPage(app_content,"../resources2/anotherView.fxml");
+        AnotherViewController controller =  fxmlLoader.getController();
+        controller.setModel(ModelFactory.getModel("user"));
     }
 
     public void btnDashboard(ActionEvent actionEvent) {
