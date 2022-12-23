@@ -28,7 +28,7 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField user_password;
 
-    private UserManager manager = new UserManager();
+    private final UserManager manager = new UserManager();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
