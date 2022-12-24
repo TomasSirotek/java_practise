@@ -18,7 +18,6 @@ public class DAOUtils {
         AnchorPane root = fxmlLoader.getRoot();
         app_content.getChildren().clear();
         app_content.getChildren().add(root);
-
         return fxmlLoader;
     }
 }
