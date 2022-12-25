@@ -19,6 +19,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import static oop_basics.dao_pattern.BLL.DAOUtils.loadFxmlPage;
+
 public class LoginController implements Initializable {
 
 
@@ -30,6 +32,8 @@ public class LoginController implements Initializable {
 
     private final UserManager manager = new UserManager();
 
+    // inject email service
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
             log_in.setOnAction(this::login);
@@ -39,8 +43,17 @@ public class LoginController implements Initializable {
         CurrentUser currentUser = CurrentUser.getInstance();
         currentUser.login(user_email.getText(),user_password.getText());
         try {
-            // check if user is
+            // check if user is authorized
+            // if authorized true send generated code to email address
+            // display scene with input of code
+            // if code matches with email code
+            // switch to sceneToDashboard
             if(currentUser.isAuthorized()){
+                if(!currentUser.isActive()){
+                    // send random generated 4 digits to email service
+                    // display verification window
+                    displayVerificationWindow();
+                }
                 switchScenesToDashboard(actionEvent);
             }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -54,10 +67,15 @@ public class LoginController implements Initializable {
 
     }
 
+    private void displayVerificationWindow() {
+
+    }
+
     private void switchScenesToDashboard(ActionEvent actionEvent) {
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources2/dashboardView.fxml"));
+            FXMLLoader loader =
+                    new FXMLLoader(getClass().getResource("../resources2/dashboardView.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
