@@ -68,6 +68,15 @@ public class CurrentUser {
                 user.map(User::getPassword_hash).orElseThrow().equals(this.password);
     }
 
+    public boolean isActive() throws SQLException {
+        // Check if user is active
+        // whether the user is authorized
+        Optional<User> user = userManager.getByEmail(this.email);
+
+        return user.map(User::getEmail).orElseThrow().equals(this.email) &&
+                user.map(User::getPassword_hash).orElseThrow().equals(this.password);
+    }
+
 
 
 }

@@ -39,6 +39,7 @@ public class LoginController implements Initializable {
         CurrentUser currentUser = CurrentUser.getInstance();
         currentUser.login(user_email.getText(),user_password.getText());
         try {
+            // check if user is
             if(currentUser.isAuthorized()){
                 switchScenesToDashboard(actionEvent);
             }else {
