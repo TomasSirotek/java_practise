@@ -7,19 +7,23 @@ import oop_basics.dao_pattern.DAL.factories.DAOFactory;
 import oop_basics.dao_pattern.DAL.factories.IDAOFactory;
 import oop_basics.dao_pattern.User;
 
+import javax.inject.Inject;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
 public class UserManager {
     private final IUserDAO userDAO;
+    private static final IDAOFactory daoFactory = new DAOFactory();
 
-    public UserManager() {
-        IDAOFactory daoFactory = new DAOFactory();
-        userDAO = daoFactory.createUserDAO();
+    @Inject
+    public UserManager(IUserDAO userDAO) {
+       //  userDAO = daoFactory.createUserDAO();
+        this.userDAO = userDAO;
     }
 
-    public Stream<User> getAll() throws SQLException{
+    public List<User> getAll() throws SQLException{
         return userDAO.getAll();
     }
     public Optional<User> getByEmail(String email) throws SQLException{

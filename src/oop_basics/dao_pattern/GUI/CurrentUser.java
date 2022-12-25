@@ -11,12 +11,13 @@ import java.util.Optional;
  * Singleton design pattern because there can be only one
  */
 public class CurrentUser {
+
+    private UserManager userManager;
     // Private constructor to prevent direct instantiation
-    private CurrentUser() {}
 
     // Private static variable to hold the singleton instance
     private static CurrentUser instance;
-    private static UserManager userManager;
+   // private static UserManager userManager;
 
     // Private variables to hold the user's name and password
     private String email;
@@ -28,7 +29,6 @@ public class CurrentUser {
     public static CurrentUser getInstance() {
         if (instance == null) {
             instance = new CurrentUser();
-            userManager = new UserManager();
         }
         return instance;
     }

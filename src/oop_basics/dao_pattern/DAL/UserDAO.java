@@ -15,6 +15,9 @@ import org.jooq.impl.DSL;
 import org.jooq.impl.DSL.*;
 
 import org.jooq.Record;
+
+import javax.inject.Inject;
+
 import static org.jooq.Table.*;
 import static org.jooq.impl.DSL.table;
 /**
@@ -24,7 +27,7 @@ public class UserDAO implements IUserDAO {
     public static void main(String[] args) throws SQLException {
 
 
-        IUserDAO userDAO = new UserDAO();
+      //  IUserDAO userDAO = new UserDAO();
 //        var stream  = userDAO.getAll();
 //
 //       stream.forEach(System.out::println);
@@ -33,8 +36,8 @@ public class UserDAO implements IUserDAO {
 //
 //        resultUserId.ifPresent(System.out::println) ;
 
-        var email = userDAO.getByEmail("dadin@gmail.com");
-        email.ifPresent(System.out::println);
+//        var email = userDAO.getByEmail("dadin@gmail.com");
+//        email.ifPresent(System.out::println);
     }
 
     // Specify data source
@@ -43,17 +46,19 @@ public class UserDAO implements IUserDAO {
     DatabaseConnection connection = DatabaseConnection.getInstance();
 
     @Override
-    public Stream<User> getAll() throws SQLException {
+    public List<User> getAll() throws SQLException {
         List<User> userStream;
-        try (Connection c = connection.getConnection()) {
-            // ... and then profit from the new Collection methods
-            userStream = new ArrayList<>(DSL.using(c, SQLDialect.MYSQL)
-                    .select()
-                    .from(table("[user]"))
-                    // We can use lambda expressions to map jOOQ Records
-                    .fetch().into(User.class));
-        }
-            return userStream.stream();
+
+        return List.of(new User(1,"enau","asda","sad"));
+//        try (Connection c = connection.getConnection()) {
+//            // ... and then profit from the new Collection methods
+//            userStream = new ArrayList<>(DSL.using(c, SQLDialect.MYSQL)
+//                    .select()
+//                    .from(table("[user]"))
+//                    // We can use lambda expressions to map jOOQ Records
+//                    .fetch().into(User.class));
+//        }
+//            return userStream.stream();
         }
 
     @Override

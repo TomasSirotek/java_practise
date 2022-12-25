@@ -30,18 +30,28 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField user_password;
 
-    private final UserManager manager = new UserManager();
+    private final UserManager manager;
+
+    public LoginController(UserManager manager){
+        this.manager = manager;
+    }
 
     // inject email service
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
             log_in.setOnAction(this::login);
+        try {
+            System.out.println(manager.getAll());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void login(ActionEvent actionEvent)  {
         CurrentUser currentUser = CurrentUser.getInstance();
         currentUser.login(user_email.getText(),user_password.getText());
+        String test ;
         try {
             // check if user is authorized
             // if authorized true send generated code to email address
@@ -52,7 +62,13 @@ public class LoginController implements Initializable {
                 if(!currentUser.isActive()){
                     // send random generated 4 digits to email service
                     // display verification window
-                    displayVerificationWindow();
+                    if(displayVerificationWindow()){
+                        switchScenesToDashboard(actionEvent);
+                    }else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("invalid");
+                        alert.show();
+                    }
                 }
                 switchScenesToDashboard(actionEvent);
             }else {
@@ -67,8 +83,11 @@ public class LoginController implements Initializable {
 
     }
 
-    private void displayVerificationWindow() {
-
+    private boolean displayVerificationWindow() {
+        // display to check email address
+        // compare if inputted code matches code that was sent to the email
+        // if it matched then return true if not return false
+        return false;
     }
 
     private void switchScenesToDashboard(ActionEvent actionEvent) {

@@ -6,5 +6,7 @@ public abstract class AbstractCLASS {
     public abstract String getStringValue();
 
     public AbstractCLASS(){
+        // does internal implementation depending on the Value there
+        // example sending emails 
     }
 }

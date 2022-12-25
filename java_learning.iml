@@ -37,5 +37,6 @@
     <orderEntry type="library" name="microsoft.sqlserver.mssql.jdbc" level="project" />
     <orderEntry type="library" name="jooq" level="project" />
     <orderEntry type="library" name="jooq.codegen" level="project" />
+    <orderEntry type="library" name="google.inject.guice" level="project" />
   </component>
 </module>

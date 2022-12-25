@@ -1,7 +1,28 @@
 package oop_basics.better_dep_injection;
 
-public class Main {
-    public static void main(String[] args) {
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import org.jooq.DAO;
 
+import java.util.List;
+
+
+public class Main {
+
+    public static void main(String[] args) {
+//        CarDAO carDAO = new CarDAO();
+//        CarService carService = new CarService(carDAO);
+//
+//        List<Car> allCards =  carService.getAll();
+//        allCards.forEach(System.out::println);
+
+        Injector injector = Guice.createInjector(
+                new MyModule());
+        // Bootstrap the application by creating an instance of the server then
+        // start the server to handle incoming requests.
+
+        CarService carService = injector.getInstance(CarService.class);
+        var all = carService.getAll();
+        all.forEach(System.out::println);
     }
 }
