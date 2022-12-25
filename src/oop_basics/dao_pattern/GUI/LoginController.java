@@ -12,8 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import oop_basics.dao_pattern.BLL.IUserManager;
 import oop_basics.dao_pattern.BLL.UserManager;
 
+import javax.inject.Inject;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -30,22 +32,17 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField user_password;
 
-    private final UserManager manager;
-
-    public LoginController(UserManager manager){
-        this.manager = manager;
-    }
-
-    // inject email service
+    @Inject private IUserManager manager;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
             log_in.setOnAction(this::login);
         try {
-            System.out.println(manager.getAll());
+            System.out.println(manager.getAll().toString());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     private void login(ActionEvent actionEvent)  {

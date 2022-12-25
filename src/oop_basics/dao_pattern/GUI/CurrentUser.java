@@ -1,6 +1,7 @@
 package oop_basics.dao_pattern.GUI;
 
 
+import oop_basics.dao_pattern.BLL.IUserManager;
 import oop_basics.dao_pattern.BLL.UserManager;
 import oop_basics.dao_pattern.User;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
  */
 public class CurrentUser {
 
-    private UserManager userManager;
+    private IUserManager userManager;
     // Private constructor to prevent direct instantiation
 
     // Private static variable to hold the singleton instance

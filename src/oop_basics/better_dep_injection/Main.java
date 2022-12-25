@@ -10,12 +10,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-//        CarDAO carDAO = new CarDAO();
-//        CarService carService = new CarService(carDAO);
-//
-//        List<Car> allCards =  carService.getAll();
-//        allCards.forEach(System.out::println);
-
         Injector injector = Guice.createInjector(
                 new MyModule());
         // Bootstrap the application by creating an instance of the server then

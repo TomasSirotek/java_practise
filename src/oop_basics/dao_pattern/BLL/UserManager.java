@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class UserManager {
+public class UserManager implements IUserManager {
     private final IUserDAO userDAO;
     private static final IDAOFactory daoFactory = new DAOFactory();
 
