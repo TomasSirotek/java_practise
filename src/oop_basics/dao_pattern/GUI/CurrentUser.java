@@ -5,31 +5,38 @@ import oop_basics.dao_pattern.BLL.IUserManager;
 import oop_basics.dao_pattern.BLL.UserManager;
 import oop_basics.dao_pattern.User;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.sql.SQLException;
 import java.util.Optional;
 
 /**
  * Singleton design pattern because there can be only one
  */
+@Singleton
 public class CurrentUser {
 
+    @Inject
     private IUserManager userManager;
-    // Private constructor to prevent direct instantiation
-
     // Private static variable to hold the singleton instance
     private static CurrentUser instance;
-   // private static UserManager userManager;
-
     // Private variables to hold the user's name and password
     private String email;
     private String password;
 
     private boolean isLoggedIn;
 
+    // Private constructor to prevent direct instantiation
+    private CurrentUser(){
+    }
     // Public static method to get the singleton instance
     public static CurrentUser getInstance() {
         if (instance == null) {
-            instance = new CurrentUser();
+            synchronized (CurrentUser.class) {
+                if (instance == null) {
+                    instance = new CurrentUser();
+                }
+            }
         }
         return instance;
     }

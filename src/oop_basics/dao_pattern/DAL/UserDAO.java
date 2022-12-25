@@ -77,18 +77,19 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public Optional<User> getByEmail(String email) throws SQLException {
-        try (Connection cnn = connection.getConnection()) {
-            return DSL.using(cnn)
-                    .select()
-                    .from("[user]")
-                    .where("email = ?",email)
-                    .fetchOptional(it -> new User(
-                            (Integer)it.getValue("id"),
-                            (String) it.getValue("user_name"),
-                            (String) it.getValue("email"),
-                            (String) it.getValue("password_hash")
-                    ));
-        }
+        return Optional.of(new User(1,"tOMAS","email","1234"));
+//        try (Connection cnn = connection.getConnection()) {
+//            return DSL.using(cnn)
+//                    .select()
+//                    .from("[user]")
+//                    .where("email = ?",email)
+//                    .fetchOptional(it -> new User(
+//                            (Integer)it.getValue("id"),
+//                            (String) it.getValue("user_name"),
+//                            (String) it.getValue("email"),
+//                            (String) it.getValue("password_hash")
+//                    ));
+//        }
     }
 
     @Override

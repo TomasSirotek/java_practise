@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import org.checkerframework.checker.units.qual.C;
 
+import javax.inject.Inject;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -23,6 +25,7 @@ public class DashBoardController implements Initializable {
 
     private final CurrentUser currentUser = CurrentUser.getInstance();
 
+    private UserModel model;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -33,7 +36,8 @@ public class DashBoardController implements Initializable {
     public void btnUsersOnClick(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = loadFxmlPage(app_content,"../resources2/anotherView.fxml");
         AnotherViewController controller =  fxmlLoader.getController();
-        controller.setModel(ModelFactory.getModel("user"));
+       // controller.setModel(ModelFactory.getModel("user"));
+        controller.setModel(model);
     }
 
     public void btnDashboard(ActionEvent actionEvent) {

@@ -56,17 +56,17 @@ public class LoginController implements Initializable {
             // if code matches with email code
             // switch to sceneToDashboard
             if(currentUser.isAuthorized()){
-                if(!currentUser.isActive()){
-                    // send random generated 4 digits to email service
-                    // display verification window
-                    if(displayVerificationWindow()){
-                        switchScenesToDashboard(actionEvent);
-                    }else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("invalid");
-                        alert.show();
-                    }
-                }
+//                if(!currentUser.isActive()){
+//                    // send random generated 4 digits to email service
+//                    // display verification window
+//                    if(displayVerificationWindow()){
+//                        switchScenesToDashboard(actionEvent);
+//                    }else {
+//                        Alert alert = new Alert(Alert.AlertType.ERROR);
+//                        alert.setContentText("invalid");
+//                        alert.show();
+//                    }
+//                }
                 switchScenesToDashboard(actionEvent);
             }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
