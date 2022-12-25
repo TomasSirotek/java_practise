@@ -32,7 +32,6 @@ public class DashBoardController implements Initializable {
        this.current_user_email.setText(currentUser.getEmail());
     }
 
-
     public void btnUsersOnClick(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader = loadFxmlPage(app_content,"../resources2/anotherView.fxml");
         AnotherViewController controller =  fxmlLoader.getController();

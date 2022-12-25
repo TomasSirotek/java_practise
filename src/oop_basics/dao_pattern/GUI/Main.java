@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import oop_basics.better_dep_injection.CarService;
 import oop_basics.better_dep_injection.MyModule;
+import oop_basics.dao_pattern.BLL.DAOUtils;
 import oop_basics.dao_pattern.ServiceModule;
 
 import java.io.IOException;
@@ -26,10 +27,13 @@ public final class Main extends Application {
         Injector injector = Guice.createInjector(new ServiceModule());
         //The FXMLLoader is instantiated the way Google Guice offers - the FXMLLoader instannce is built in a separated Provider<FXMLLoader> called FXMLLoaderProvider.
         FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
-        fxmlLoader.setLocation(getClass().getResource("../resources2/loginView.fxml"));
+
+       //  fxmlLoader.load(Main.class.getResource("../resources2/loginView.fxml").openStream());
+
+       fxmlLoader.setLocation(getClass().getResource("../resources2/loginView.fxml"));
         Parent root = fxmlLoader.load();
             stage.setScene(new Scene(root));
-            stage.setTitle("JavaFX 8 Dependency injection");
+            stage.setTitle("JavaFX Dependency injection");
             stage.show();
             stage.setOnCloseRequest(e -> {
                 System.exit(0);

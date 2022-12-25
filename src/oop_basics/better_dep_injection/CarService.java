@@ -4,8 +4,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 public class CarService {
-    private final ICarDAO carDAO; // should be interface
-
+    private final ICarDAO carDAO;
     @Inject
     public CarService(ICarDAO carDAO){
         this.carDAO = carDAO;

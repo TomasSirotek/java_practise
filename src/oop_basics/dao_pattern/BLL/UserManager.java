@@ -15,11 +15,8 @@ import java.util.stream.Stream;
 
 public class UserManager implements IUserManager {
     private final IUserDAO userDAO;
-    private static final IDAOFactory daoFactory = new DAOFactory();
-
     @Inject
     public UserManager(IUserDAO userDAO) {
-       //  userDAO = daoFactory.createUserDAO();
         this.userDAO = userDAO;
     }
 
