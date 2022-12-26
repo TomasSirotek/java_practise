@@ -18,6 +18,7 @@ public class ServiceModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(FXMLLoader.class).toProvider(FXMLLoaderProvider.class);
+
         bind(IUserDAO.class).to(UserDAO.class);
         bind(IUserManager.class).to(UserManager.class);
         bind(IModel.class).to(UserModel.class);

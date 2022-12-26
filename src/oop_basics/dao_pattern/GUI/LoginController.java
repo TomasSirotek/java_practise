@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import oop_basics.dao_pattern.BLL.DAOUtils;
 import oop_basics.dao_pattern.BLL.IUserManager;
 import oop_basics.dao_pattern.BLL.UserManager;
 
@@ -21,7 +22,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static oop_basics.dao_pattern.BLL.DAOUtils.loadFxmlPage;
 
 public class LoginController implements Initializable {
 
@@ -32,6 +32,7 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField user_password;
 
+    // just test
     @Inject private IUserManager manager;
 
     @Override
@@ -90,12 +91,14 @@ public class LoginController implements Initializable {
     private void switchScenesToDashboard(ActionEvent actionEvent) {
         Parent root = null;
         try {
-            FXMLLoader loader =
-                    new FXMLLoader(getClass().getResource("../resources2/dashboardView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources2/dashboardView.fxml"));
             root = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        Scene test = ((Node) actionEvent.getSource()).getScene();
+
+
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setResizable(false);

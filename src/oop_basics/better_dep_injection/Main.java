@@ -16,6 +16,8 @@ public class Main {
         // start the server to handle incoming requests.
 
         CarService carService = injector.getInstance(CarService.class);
+
+
         var all = carService.getAll();
         all.forEach(System.out::println);
     }
