@@ -5,6 +5,8 @@ import com.google.inject.Injector;
 import com.google.inject.Provider;
 import javafx.fxml.FXMLLoader;
 
+import java.util.ResourceBundle;
+
 public class FXMLProvider implements Provider<FXMLLoader> {
     @Inject
     Injector injector;

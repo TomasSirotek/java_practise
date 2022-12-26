@@ -11,6 +11,16 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.text.Font?>
 
+
+<!--<VBox xmlns="http://javafx.com/javafx"-->
+<!--      xmlns:fx="http://javafx.com/fxml"-->
+<!--      prefHeight="400.0" prefWidth="600.0"-->
+<!--      fx:controller="oop_basics.basicSwitchingJavaFx.RootController">-->
+<!--    <children>-->
+<!--        <fx:include fx:id="baseView" source="baseView.fxml" />-->
+<!--    </children>-->
+<!--</VBox>-->
+
 <!--<AnchorPane xmlns="http://javafx.com/javafx"-->
 <!--            xmlns:fx="http://javafx.com/fxml"-->
 <!--            fx:controller="oop_basics.basicSwitchingJavaFx.RootController"-->
@@ -26,7 +36,8 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="oop_basics.basicSwitchingJavaFx.RootController">
 <children>
-    <StackPane layoutY="-9.0" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+    <StackPane  layoutY="-9.0" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
             <BorderPane prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <left>
@@ -34,11 +45,11 @@
                         <children>
                             <AnchorPane prefHeight="183.0" prefWidth="127.0">
                                 <children>
-                                    <Button fx:id="dashboardRoute" alignment="BASELINE_LEFT" contentDisplay="TOP" layoutY="13.0" minHeight="53.0" mnemonicParsing="false"  prefHeight="53.0" prefWidth="127.0" styleClass="menuButton" text="Dashboard" />
+                                    <Button fx:id="dashboardRoute"  onAction="#switchToAnotherTab" alignment="BASELINE_LEFT" contentDisplay="TOP" layoutY="13.0" minHeight="53.0" mnemonicParsing="false"  prefHeight="53.0" prefWidth="127.0" styleClass="menuButton" text="Dashboard" />
                                     <Button alignment="BASELINE_LEFT" contentDisplay="TOP" layoutX="-1.0" layoutY="54.0" mnemonicParsing="false"  prefHeight="78.0" prefWidth="127.0" styleClass="menuButton" text="Users" />
                                 </children>
                             </AnchorPane>
-                            <Button fx:id="lblLogOut" alignment="BASELINE_LEFT" contentDisplay="TOP" layoutX="-1.0" layoutY="470.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Log out">
+                            <Button fx:id="lblLogOut"  alignment="BASELINE_LEFT" contentDisplay="TOP" layoutX="-1.0" layoutY="470.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" text="Log out">
                                 <styleClass>
                                     <String fx:value="menuButton" />
                                     <String fx:value="primary" />
