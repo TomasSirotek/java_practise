@@ -53,17 +53,15 @@ public class StageManager implements IStageManager{
     }
 
     @Override
-    public void switchTabsWithin(FxmlView another, StackPane appContent) {
-        FXMLLoader loader2 = new FXMLLoader();
+    public AnchorPane switchTabsWithin(String path) {
         try {
-            loader2.load(Objects.requireNonNull(StageManager.class.getResource(another.getFxmlFile())));
+            var test = this.loader.getRoot();
+            this.loader.load(Objects.requireNonNull(StageManager.class.getResource(path)));
         } catch (Exception exception) {
-            logAndExit("Unable to load FXML view" + another, exception);
+            logAndExit("Unable to load FXML view" + path, exception);
 
         }
-        AnchorPane root = loader2.getRoot();
-        appContent.getChildren().clear();
-        appContent.getChildren().add(root);
+        return this.loader.getRoot();
     }
 
     private void show(final Parent rootNode, String title) {
