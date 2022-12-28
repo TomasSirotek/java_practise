@@ -15,7 +15,7 @@
 
 
 
-<StackPane id="loginStackPane" prefHeight="179.0" prefWidth="348.0" xmlns="http://javafx.com/javafx"
+<StackPane id="loginStackPane" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml" fx:controller="oop_basics.basicSwitchingJavaFx.LoginController">
 <children>
     <VBox prefHeight="339.0" prefWidth="330.0" spacing="10.0">

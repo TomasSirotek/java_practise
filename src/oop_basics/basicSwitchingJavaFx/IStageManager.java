@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public interface IStageManager {
     void switchScene(final FxmlView view);
 
-    void setStage(Stage primaryStage, FXMLLoader injector);
+    void setStage(Stage primaryStage);
 
-    AnchorPane switchTabsWithin(String path);
+    void switchTabsWithin(String path);
 }

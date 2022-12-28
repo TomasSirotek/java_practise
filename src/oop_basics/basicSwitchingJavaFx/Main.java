@@ -25,13 +25,14 @@ public final class Main extends Application {
 
     private final IStageManager stageManager1 = StageManager.getInstance();
 
-    private final Injector injector = Guice.createInjector(new AppModule());;
+    private final Injector injector = Guice.createInjector(
+            new AppModule()
+    );
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader2 = injector.getInstance(FXMLLoader.class);
-        stageManager1.setStage(primaryStage,loader2);
-
-
+      //  FXMLLoader loader2 = injector.getInstance(FXMLLoader.class);
+        stageManager1.setStage(primaryStage);
         displayInitialScene();
 
 //        Injector injector = Guice.createInjector(

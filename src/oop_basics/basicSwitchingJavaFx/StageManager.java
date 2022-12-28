@@ -1,5 +1,6 @@
 package oop_basics.basicSwitchingJavaFx;
 
+import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import javafx.application.Platform;
@@ -26,6 +27,9 @@ public class StageManager implements IStageManager{
 
     private FXMLLoader loader;
 
+    private final Injector injector = Guice.createInjector(
+            new AppModule()
+    );
 
     private StageManager() {
     }
@@ -47,22 +51,25 @@ public class StageManager implements IStageManager{
     }
 
     @Override
-    public void setStage(Stage primaryStage, FXMLLoader loader) {
+    public void setStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.loader = loader;
     }
 
     @Override
-    public AnchorPane switchTabsWithin(String path) {
-        try {
-            var test = this.loader.getRoot();
-            this.loader.load(Objects.requireNonNull(StageManager.class.getResource(path)));
-        } catch (Exception exception) {
-            logAndExit("Unable to load FXML view" + path, exception);
+    public void switchTabsWithin(String path) {
+    // Load the view and get the root node
+    Parent root = loadViewNodeHierarchy(path);
 
-        }
-        return this.loader.getRoot();
-    }
+    //
+        // needs to know about the Parent children for the deletation
+
+    // Find the StackPane layout
+        StackPane stackPane = (StackPane) primaryStage.getScene().lookup("#app_content");
+    // Clear the StackPane and add the new root node
+        stackPane.getChildren().clear();
+        stackPane.getChildren().add(root);
+}
+
 
     private void show(final Parent rootNode, String title) {
         Scene scene = prepareScene(rootNode);
@@ -78,7 +85,6 @@ public class StageManager implements IStageManager{
             logAndExit ("Unable to show scene for title" + title,  exception);
         }
     }
-
 
     private Scene prepareScene(Parent rootNode){
         Scene scene = primaryStage.getScene();
@@ -100,14 +106,12 @@ public class StageManager implements IStageManager{
         Parent rootNode = null;
 
 
-//        //The FXMLLoader is instantiated the way Google Guice offers - the FXMLLoader instannce is built in a separated Provider<FXMLLoader> called FXMLLoaderProvider.
-        FXMLLoader loader2 = this.loader;
+        FXMLLoader loader2 = injector.getInstance(FXMLLoader.class);
+        //FXMLLoader loader2 = new FXMLLoader();
         try {
             rootNode = loader2.load(Objects.requireNonNull(StageManager.class.getResource(fxmlFilePath)));
-          //  Objects.requireNonNull(rootNode, "A Root FXML node must not be null");
         } catch (Exception exception) {
             logAndExit("Unable to load FXML view" + fxmlFilePath, exception);
-
         }
         return rootNode;
     }

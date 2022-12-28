@@ -37,6 +37,6 @@ public class LoginController implements Initializable {
     public void loginButtonPressed(ActionEvent actionEvent) {
         System.out.println(stageManager1.toString());
         stageManager1.switchScene(FxmlView.MAIN);
-        System.out.println("Hello word");
+        System.out.println("Switched to the base dashboard");
     }
 }

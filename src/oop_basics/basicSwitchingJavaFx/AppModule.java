@@ -13,7 +13,7 @@ public class AppModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(FXMLLoader.class).toProvider(FXMLProvider.class);
-        bind(IStageManager.class).toInstance(StageManager.getInstance());
+       // bind(IStageManager.class).toInstance(StageManager.getInstance());
        //  bind(StageManager.class).toInstance(StageManager.);
     }
 }
