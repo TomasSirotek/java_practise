@@ -28,7 +28,7 @@ public class RootController implements Initializable {
     private final IStageManager stageManager1 = StageManager.getInstance();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        stageManager1.switchTabsWithin(FxmlView.MAIN.getFxmlFile());
+       stageManager1.switchTabsWithin(FxmlView.DASHBOARD_TAB.getFxmlFile());
     }
 
     @FXML
@@ -38,7 +38,7 @@ public class RootController implements Initializable {
       //  app_content.setBackground(Background.fill(Paint.valueOf("red")));
       //  FXMLLoader fxmlLoader = new FXMLLoader();
 
-        stageManager1.switchTabsWithin(FxmlView.ANOTHER.getFxmlFile());
+        stageManager1.switchTabsWithin(FxmlView.USERS_TAB.getFxmlFile());
       //  AnchorPane root = loader2.getRoot();
         //app_content.getChildren().clear();
         //app_content.getChildren().add(root);
@@ -69,7 +69,7 @@ public class RootController implements Initializable {
 //        AnchorPane root = fxmlLoader.getRoot();
 //        app_content.getChildren().clear();
 //        app_content.getChildren().add(root);
-        stageManager1.switchTabsWithin(FxmlView.MAIN.getFxmlFile());
+        stageManager1.switchTabsWithin(FxmlView.DASHBOARD_TAB.getFxmlFile());
 
         System.out.println("Dashboard");
     }

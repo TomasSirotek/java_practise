@@ -1,16 +1,16 @@
-package oop_basics.basicSwitchingJavaFx;
+package oop_basics.sceneSwitch_2_0;
 
 public enum FxmlView {
     MAIN {
         @Override
         String getFxmlFile() {
-            return "fxmlFiles/rootView.fxml";
+            return "dashBoardView.fxml";
         }
     },
     LOGIN {
         @Override
         String getFxmlFile() {
-            return "fxmlFiles/loginView.fxml";
+            return "loginView.fxml";
         }
     },
     USERS_TAB {
@@ -18,15 +18,7 @@ public enum FxmlView {
         String getFxmlFile() {
             return "fxmlFiles/testTab.fxml";
         }
-    },
-    DASHBOARD_TAB{
-        @Override
-        String getFxmlFile() {
-            return "fxmlFiles/dashBoardView.fxml";
-        }
-    }
-
-    ;
+    };
     abstract String getFxmlFile();
 
 }

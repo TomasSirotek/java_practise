@@ -35,7 +35,6 @@ public final class Main extends Application {
         FXMLLoader fxmlLoader = injector.getInstance(FXMLLoader.class);
 
 
-
         // fxmlLoader.load(Objects.requireNonNull(Main.class.getResource("../resources2/loginView.fxml")).openStream());
         Parent root = fxmlLoader.load(Objects.requireNonNull(Main.class.getResource(Paths.LOGIN_VIEW.getPath())).openStream());
 
