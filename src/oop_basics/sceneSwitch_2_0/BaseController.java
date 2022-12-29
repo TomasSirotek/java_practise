@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+// logic cntrl
 public class BaseController implements Initializable {
 
     SceneManager sceneManager;

@@ -43,4 +43,8 @@ public class SceneManager {
         rootStage.show();
     }
 
+    protected void addScreen(String name, Scene pane){
+        scenes.put(name, pane);
+    }
+
 }
