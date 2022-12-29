@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import oop_basics.dao_pattern.BLL.DAOUtils;
 import oop_basics.dao_pattern.BLL.IUserManager;
@@ -100,10 +101,11 @@ public class LoginController implements Initializable {
 
 
         Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        //  stage.initOwner(getStage());
         stage.setResizable(false);
         stage.show();
-        ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+        stage.setScene(new Scene(root));
+       // ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }
 
 

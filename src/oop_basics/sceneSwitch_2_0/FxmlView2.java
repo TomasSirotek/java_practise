@@ -1,6 +1,6 @@
 package oop_basics.sceneSwitch_2_0;
 
-public enum FxmlView {
+public enum FxmlView2 {
     MAIN {
         @Override
         String getFxmlFile() {
