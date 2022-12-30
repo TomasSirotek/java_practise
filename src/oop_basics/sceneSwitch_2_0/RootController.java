@@ -26,9 +26,9 @@ public abstract class RootController implements View {
 
     }
 
-    protected Stage getStage() {
-        return (Stage)root.getScene().getWindow();
-    }
+//    protected Stage getStage() {
+//        return (Stage)root.getScene().getWindow();
+//    }
 
 
 

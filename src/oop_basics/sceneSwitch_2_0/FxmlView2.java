@@ -16,7 +16,12 @@ public enum FxmlView2 {
     USERS_TAB {
         @Override
         String getFxmlFile() {
-            return "fxmlFiles/testTab.fxml";
+            return "userTab.fxml";
+        }
+    }, DASHBOARD_TAB{
+        @Override
+        String getFxmlFile() {
+            return "dashboardTab.fxml";
         }
     };
     abstract String getFxmlFile();

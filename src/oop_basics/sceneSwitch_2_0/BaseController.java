@@ -16,7 +16,8 @@ import java.util.ResourceBundle;
 // logic cntrl
 public class BaseController extends RootController implements Initializable {
 
-   private final IControllerFactory controllerFactory;
+    @Inject
+   private final ISceneManager sceneManager;
 
   //  @Inject
 //    public BaseController(IControllerFactory controllerFactory) {
@@ -26,8 +27,8 @@ public class BaseController extends RootController implements Initializable {
 //    private final ISceneManager sceneManager;
 
     @Inject
-    public BaseController(IControllerFactory controllerFactory) {
-        this.controllerFactory = controllerFactory;
+    public BaseController(ISceneManager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 
     @Override
@@ -36,10 +37,11 @@ public class BaseController extends RootController implements Initializable {
     }
 
     public void loginButtonPressed(ActionEvent actionEvent) throws IOException {
+            // IF ALL GOES ALRIGHT SWITCH SCENE
+            sceneManager.switchScene(FxmlView2.MAIN);
 
-
-        final RootController controller =
-                controllerFactory.loadController(FxmlView2.MAIN);
+//        final RootController controller =
+//                controllerFactory.loadController(FxmlView2);
 
 
 //       Scene scene2 = primaryStage.getScene();
@@ -49,15 +51,15 @@ public class BaseController extends RootController implements Initializable {
 //        }
 //        scene2.setRoot(controller.getView());
 
-        Scene scene2 = prepareScene(controller.getView());
+     //   Scene scene2 = prepareScene(controller.getView());
 
       //  Stage window = new Stage();
-          var test= ((Stage) actionEvent.getSource()).getScene().getWindow();
-        test.setTitle("test");
-        getStage().setScene(scene2);
-        test.sizeToScene();
-        test.centerOnScreen();
-        test.show();
+//          var test= ((Stage) actionEvent.getSource()).getScene().getWindow();
+//       // test.setTitle("test");
+//      //  getStage().setScene(scene2);
+//        test.sizeToScene();
+//        test.centerOnScreen();
+      //<  test.show();
 
      //   // this one load the parent view that will be displayed
       // final RootController resultController = controllerFactory.loadController(FxmlView2.MAIN.getFxmlFile());
@@ -91,15 +93,5 @@ public class BaseController extends RootController implements Initializable {
 //        stage.setResizable(false);
 //        stage.show();
 //     //   ((Node) actionEvent.getSource()).getScene().getWindow().hide();
-    }
-
-    private Scene prepareScene(Parent rootNode){
-        Scene scene = getStage().getScene();
-
-        if (scene == null) {
-            scene = new Scene(rootNode);
-        }
-        scene.setRoot(rootNode);
-        return scene;
     }
 }

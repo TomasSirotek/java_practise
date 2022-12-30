@@ -43,11 +43,11 @@
                         <center>
                             <StackPane fx:id="app_content" prefHeight="150.0" prefWidth="200.0">
                                 <children>
-                                    <Label text="Dashboard">
-                                        <font>
-                                            <Font size="23.0" />
-                                        </font>
-                                    </Label>
+<!--                                    <Label text="Dashboard">-->
+<!--                                        <font>-->
+<!--                                            <Font size="23.0" />-->
+<!--                                        </font>-->
+<!--                                    </Label>-->
                                 </children>
                             </StackPane>
                         </center>
