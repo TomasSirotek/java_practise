@@ -20,7 +20,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(final Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException {
         final RootController controller = controllerFactory.loadController(
                 FxmlView2.LOGIN.getFxmlFile()
         );

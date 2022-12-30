@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -29,13 +30,42 @@ public class BaseController extends RootController implements Initializable {
 
     public void loginButtonPressed(ActionEvent actionEvent) throws IOException {
 
+        // this one load the parent view that will be displayed
         final RootController resultController = controllerFactory.loadController(FxmlView2.MAIN.getFxmlFile());
 
-        Stage stage = new Stage();
-        stage.initOwner(getStage());
-        stage.setScene(new Scene(resultController.getView()));
-        stage.setResizable(false);
-        stage.show();
-     //   ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+        // main parent that needs to be set as new root
+
+        Scene scene = prepareScene(resultController.getView());
+        Stage window = getStage();
+       // Stage window = (Stage) parent.getScene().getWindow();
+        window.setTitle("test");
+        window.setScene(scene);
+        window.sizeToScene();
+        window.centerOnScreen();
+
+        try {
+            window.show();
+        } catch (Exception exception) {
+
+        }
+
+
+
+//        Stage stage = getStage();
+//       // stage.initOwner(getStage());
+//        stage.setScene(new Scene(resultController.getView()));
+//        stage.setResizable(false);
+//        stage.show();
+//     //   ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+    }
+
+    private Scene prepareScene(Parent rootNode){
+        Scene scene = getStage().getScene();
+
+        if (scene == null) {
+            scene = new Scene(rootNode);
+        }
+        scene.setRoot(rootNode);
+        return scene;
     }
 }

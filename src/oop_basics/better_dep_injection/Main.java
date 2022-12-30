@@ -17,8 +17,8 @@ public class Main {
 
         CarService carService = injector.getInstance(CarService.class);
 
-
-        var all = carService.getAll();
-        all.forEach(System.out::println);
+        carService
+                .getAll()
+                .forEach(System.out::println);
     }
 }
