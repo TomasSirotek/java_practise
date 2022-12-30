@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,7 +16,14 @@ import java.util.ResourceBundle;
 // logic cntrl
 public class BaseController extends RootController implements Initializable {
 
-    private final IControllerFactory controllerFactory;
+   private final IControllerFactory controllerFactory;
+
+  //  @Inject
+//    public BaseController(IControllerFactory controllerFactory) {
+//      //  this.controllerFactory = controllerFactory;
+//    }
+//    @Inject
+//    private final ISceneManager sceneManager;
 
     @Inject
     public BaseController(IControllerFactory controllerFactory) {
@@ -26,22 +32,50 @@ public class BaseController extends RootController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("FROM BASE");
     }
 
     public void loginButtonPressed(ActionEvent actionEvent) throws IOException {
 
-        // this one load the parent view that will be displayed
-//        final RootController resultController = controllerFactory.loadController(FxmlView2.MAIN.getFxmlFile());
+
+        final RootController controller =
+                controllerFactory.loadController(FxmlView2.MAIN);
+
+
+//       Scene scene2 = primaryStage.getScene();
+//
+//        if (scene2 == null) {
+//            scene2 = new Scene(controller.getView());
+//        }
+//        scene2.setRoot(controller.getView());
+
+        Scene scene2 = prepareScene(controller.getView());
+
+      //  Stage window = new Stage();
+          var test= ((Stage) actionEvent.getSource()).getScene().getWindow();
+        test.setTitle("test");
+        getStage().setScene(scene2);
+        test.sizeToScene();
+        test.centerOnScreen();
+        test.show();
+
+     //   // this one load the parent view that will be displayed
+      // final RootController resultController = controllerFactory.loadController(FxmlView2.MAIN.getFxmlFile());
 //
 //        // main parent that needs to be set as new root
 //
 //        Scene scene = prepareScene(resultController.getView());
-//        Stage window = getStage();
-//       // Stage window = (Stage) parent.getScene().getWindow();
+       //  sceneManager.switchScene(FxmlView2.MAIN);
+//        Stage window = new Stage();
+//
 //        window.setTitle("test");
-//        window.setScene(scene);
+//      //  window.setScene(new Scene(resultController.getView()));
 //        window.sizeToScene();
 //        window.centerOnScreen();
+//        window.show();
+//
+//        getStage().close();
+
 //
 //        try {
 //            window.show();

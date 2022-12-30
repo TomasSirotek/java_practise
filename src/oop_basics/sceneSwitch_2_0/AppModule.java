@@ -7,8 +7,9 @@ import javafx.fxml.FXMLLoader;
 public class AppModule extends AbstractModule {
     @Override
     protected void configure() {
+      //  bind(ISceneManager.class).to(SceneManager.class).in(Singleton.class);
       //  bind(FXMLLoader.class).toProvider(FXMLLoaderProvider2.class);
-        bind(IControllerFactory.class).to(ControllerFactory.class).in(Singleton.class);
+       bind(IControllerFactory.class).to(ControllerFactory.class).in(Singleton.class);
      //   bind(ISceneManager.class).to(SceneManager.class);
     }
 }

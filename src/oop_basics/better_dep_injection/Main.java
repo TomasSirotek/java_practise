@@ -10,6 +10,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        // this can go into controller factory that generates controller with injections
+
         Injector injector = Guice.createInjector(
                 new MyModule());
         // Bootstrap the application by creating an instance of the server then

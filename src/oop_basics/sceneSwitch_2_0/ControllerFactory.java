@@ -26,11 +26,11 @@ public class ControllerFactory implements IControllerFactory {
     }
 
     @Override
-    public RootController loadController(final String fxmlFile) throws IOException {
+    public RootController loadController(final FxmlView2 fxmlFile) throws IOException {
 
-        Objects.requireNonNull(fxmlFile, "fxmlFile must not be null.");
+        Objects.requireNonNull(fxmlFile.getFxmlFile(), "fxmlFile must not be null.");
 
-        final URL fxmlFileUrl = getClass().getResource(fxmlFile);
+        final URL fxmlFileUrl = getClass().getResource(fxmlFile.getFxmlFile());
         //FXMLLoader loader2 =  injector.getInstance(FXMLLoader.class);
         // loader2 loads the fxmlFile
 

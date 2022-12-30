@@ -13,27 +13,27 @@ import oop_basics.sceneSwitch_2_0.AppModule;
 
 import oop_basics.dao_pattern.ServiceModule;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 public class SceneManager implements ISceneManager {
 
-    private final Stage rootStage;
-
+    private Stage rootStage;
+    @Inject
     private final Injector injector;
-
-    public SceneManager(Stage rootStage) {
-        if (rootStage == null) {
-            throw new IllegalArgumentException();
-        }
-        this.rootStage = rootStage;
-        this.injector = Guice.createInjector(
-                new AppModule()
-        );
+    @Inject
+    public SceneManager(final Injector injector) {
+        this.injector = injector;
+    }
+    public void switchScene(final FxmlView2 view) throws IOException {
+        RootController viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
+        show(viewRootNodeHierarchy.getView(), view.getFxmlFile());
     }
 
-    public void switchScene(final FxmlView2 view) {
-        Parent viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
-        show(viewRootNodeHierarchy, view.getFxmlFile());
+    @Override
+    public void setStage(Stage primaryStage) {
+        this.rootStage = primaryStage;
     }
 
     private void show(final Parent rootNode, String title) {
@@ -65,17 +65,33 @@ public class SceneManager implements ISceneManager {
     }
 
 
-    private Parent loadViewNodeHierarchy(String fxmlFilePath) {
-        Parent rootNode = null;
+    private RootController loadViewNodeHierarchy(String fxmlFilePath) throws IOException {
 
-        FXMLLoader loader2 = injector.getInstance(FXMLLoader.class);
-      //  FXMLLoader loader = new FXMLLoader();
-        try {
-            rootNode = loader2.load(Objects.requireNonNull(SceneManager.class.getResource(fxmlFilePath)));
-        } catch (Exception exception) {
-                throw new RuntimeException(exception);
-        }
-        return rootNode;
+        Objects.requireNonNull(fxmlFilePath, "fxmlFile must not be null.");
+
+        final URL fxmlFileUrl = getClass().getResource(fxmlFilePath);
+        //FXMLLoader loader2 =  injector.getInstance(FXMLLoader.class);
+        // loader2 loads the fxmlFile
+
+        final FXMLLoader loader = new FXMLLoader(fxmlFileUrl);
+        loader.setControllerFactory(injector::getInstance);
+
+
+        final Parent view = loader.load();
+        final RootController controller = loader.getController();
+        controller.setView(view);
+
+        return controller;
+//        Parent rootNode = null;
+//
+//        FXMLLoader loader2 = injector.getInstance(FXMLLoader.class);
+//      //  FXMLLoader loader = new FXMLLoader();
+//        try {
+//            rootNode = loader2.load(Objects.requireNonNull(SceneManager.class.getResource(fxmlFilePath)));
+//        } catch (Exception exception) {
+//                throw new RuntimeException(exception);
+//        }
+//        return rootNode;
     }
 
 }
