@@ -7,7 +7,7 @@ import java.util.List;
 public class CarService {
     private final ICarDAO carDAO;
     @Inject
-    public CarService(@Named("car_dao")ICarDAO carDAO){
+    public CarService(@CarDAOAnn ICarDAO carDAO){
         this.carDAO = carDAO;
     }
 

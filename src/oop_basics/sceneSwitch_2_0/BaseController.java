@@ -31,23 +31,23 @@ public class BaseController extends RootController implements Initializable {
     public void loginButtonPressed(ActionEvent actionEvent) throws IOException {
 
         // this one load the parent view that will be displayed
-        final RootController resultController = controllerFactory.loadController(FxmlView2.MAIN.getFxmlFile());
-
-        // main parent that needs to be set as new root
-
-        Scene scene = prepareScene(resultController.getView());
-        Stage window = getStage();
-       // Stage window = (Stage) parent.getScene().getWindow();
-        window.setTitle("test");
-        window.setScene(scene);
-        window.sizeToScene();
-        window.centerOnScreen();
-
-        try {
-            window.show();
-        } catch (Exception exception) {
-
-        }
+//        final RootController resultController = controllerFactory.loadController(FxmlView2.MAIN.getFxmlFile());
+//
+//        // main parent that needs to be set as new root
+//
+//        Scene scene = prepareScene(resultController.getView());
+//        Stage window = getStage();
+//       // Stage window = (Stage) parent.getScene().getWindow();
+//        window.setTitle("test");
+//        window.setScene(scene);
+//        window.sizeToScene();
+//        window.centerOnScreen();
+//
+//        try {
+//            window.show();
+//        } catch (Exception exception) {
+//
+//        }
 
 
 
