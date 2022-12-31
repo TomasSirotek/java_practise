@@ -37,12 +37,25 @@ public class SceneManager implements ISceneManager {
     @Override
     public void openNewAdditionalStage(FxmlView2 path, String title) throws IOException {
         Parent root = loadViewNodeHierarchy(path.getFxmlFile());
-        Stage stage = new Stage();
-        stage.setTitle(title);
-        stage.setScene(new Scene(root));
-        stage.sizeToScene();
-        stage.centerOnScreen();
-        stage.show();
+        prepareAndShowStage(root,title);
+
+    }
+
+    public void prepareAndShowStage(Parent root,String title){
+        if(root != null && title != null){
+            Stage stage = new Stage();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root));
+            stage.sizeToScene();
+            stage.centerOnScreen();
+            try{
+                stage.show();
+            }catch(Exception e){
+                throw new RuntimeException (
+                        "Unable to show stage for title" + title + " " + e
+                );
+            }
+        }
     }
 
     @Override
@@ -80,8 +93,7 @@ public class SceneManager implements ISceneManager {
 
     private Parent loadViewNodeHierarchy(String fxmlFilePath) throws IOException {
         Objects.requireNonNull(fxmlFilePath, "fxmlFile must not be null.");
-        RootController controller = controllerFactory.loadController(fxmlFilePath);
-        return controller.getView();
+        return controllerFactory.loadController(fxmlFilePath).getView();
     }
 
     //        final URL fxmlFileUrl = getClass().getResource(fxmlFilePath);

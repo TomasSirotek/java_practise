@@ -19,13 +19,6 @@ public class BaseController extends RootController implements Initializable {
     @Inject
    private final ISceneManager sceneManager;
 
-  //  @Inject
-//    public BaseController(IControllerFactory controllerFactory) {
-//      //  this.controllerFactory = controllerFactory;
-//    }
-//    @Inject
-//    private final ISceneManager sceneManager;
-
     @Inject
     public BaseController(ISceneManager sceneManager) {
         this.sceneManager = sceneManager;
@@ -38,8 +31,9 @@ public class BaseController extends RootController implements Initializable {
 
     public void loginButtonPressed(ActionEvent actionEvent) throws IOException {
             // IF ALL GOES ALRIGHT SWITCH SCENE
-            sceneManager.switchScene(FxmlView2.MAIN);
+            var test = getView(); // GETS PARENT
 
+            sceneManager.switchScene(FxmlView2.MAIN);
 //        final RootController controller =
 //                controllerFactory.loadController(FxmlView2);
 

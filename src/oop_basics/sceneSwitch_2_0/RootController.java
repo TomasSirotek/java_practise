@@ -18,21 +18,10 @@ public abstract class RootController implements View {
 
     @Override
     public void setView(Parent view) throws IllegalStateException {
-
         if (this.root != null)
             throw new IllegalStateException("view already set.");
 
         this.root = Objects.requireNonNull(view, "view must not be null.");
 
     }
-
-//    protected Stage getStage() {
-//        return (Stage)root.getScene().getWindow();
-//    }
-
-
-
-
-
-
 }

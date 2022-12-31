@@ -37,7 +37,6 @@ public class ControllerFactory implements IControllerFactory {
         final FXMLLoader loader = new FXMLLoader(fxmlFileUrl);
         loader.setControllerFactory(injector::getInstance);
 
-
         final Parent view = loader.load();
         final RootController controller = loader.getController();
         controller.setView(view);
