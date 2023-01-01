@@ -8,10 +8,13 @@ import java.util.regex.Pattern;
 
 public abstract class Extractor {
 
+
+    // every subClass MUST implemented these 3 methods in order for extractor to work
     public abstract Pattern getPattern();
     public abstract String getReportName();
 
     public abstract String clean(String input);
+
 
     private String parse(String path) throws FileNotFoundException{
 

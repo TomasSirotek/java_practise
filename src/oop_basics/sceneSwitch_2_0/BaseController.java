@@ -88,4 +88,6 @@ public class BaseController extends RootController implements Initializable {
 //        stage.show();
 //     //   ((Node) actionEvent.getSource()).getScene().getWindow().hide();
     }
+
+
 }
