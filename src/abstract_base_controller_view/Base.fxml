@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="abstract_base_controller_view.BaseController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="abstract_base_controller_view.BaseController">
+<StackPane id="app_content" layoutY="-9.0" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <BorderPane prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <left>
+            <AnchorPane fx:id="drawer" prefHeight="517.0" prefWidth="204.0">
+                <AnchorPane prefHeight="105.0" prefWidth="227.0">
+                    <Button fx:id="dashboardRoute" alignment="BASELINE_LEFT" contentDisplay="TOP" layoutY="13.0" minHeight="46.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="225.0" styleClass="menuButton" text="All movies " />
+                </AnchorPane>
+               <AnchorPane layoutX="-2.0" layoutY="386.0" prefHeight="131.0" prefWidth="205.0" AnchorPane.rightAnchor="15.0">
+                  <children>
+                     <Button fx:id="lblLogOut1" alignment="CENTER" contentDisplay="TOP" layoutX="27.0" layoutY="13.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="126.0" text="Create 2" AnchorPane.rightAnchor="49.0">
+                        <styleClass>
+                           <String fx:value="menuButton" />
+                           <String fx:value="primary" />
+                        </styleClass>
+                     </Button>
+                      <Button fx:id="lblLogOut" alignment="CENTER" contentDisplay="TOP" layoutX="26.0" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="126.0" text="Create 2" AnchorPane.rightAnchor="49.0">
+                          <styleClass>
+                              <String fx:value="menuButton" />
+                              <String fx:value="primary" />
+                          </styleClass>
+                      </Button>
+                  </children>
+               </AnchorPane>
+               <ScrollPane fx:id="scroll_test" layoutY="105.0" prefHeight="227.0" prefWidth="227.0" />
+            </AnchorPane>
+        </left>
+        <center>
+            <StackPane fx:id="app_content" prefHeight="324.0" prefWidth="593.0" />
+        </center>
+        <top>
+            <AnchorPane fx:id="header_menu" prefHeight="42.0" prefWidth="753.0" BorderPane.alignment="CENTER">
+                <effect>
+                    <DropShadow height="22.03" radius="5.0075" spread="0.15" width="0.0" />
+                </effect>
+                <GridPane layoutX="14.0" layoutY="-15.0" prefHeight="60.0" prefWidth="751.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                        <Label fx:id="header_title" text="Collection">
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </HBox>
+                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                    </AnchorPane>
+                    <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" GridPane.columnIndex="2">
+                        <children>
+                            <ImageView fitHeight="34.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" />
+                        </children>
+                    </HBox>
+                </GridPane>
+            </AnchorPane>
+        </top>
+    </BorderPane>
+</StackPane>
 </AnchorPane>

@@ -11,13 +11,13 @@ import java.net.URL;
 import java.util.Objects;
 
 public class ControllerFactory implements IControllerFactory{
-//    @Inject
-//    private final Injector injector;
+    @Inject
+    private final Injector injector;
 
-//    @Inject
-//    public ControllerFactory(final Injector injector) {
-//        this.injector = Objects.requireNonNull(injector, "injector must not be null.");
-//    }
+    @Inject
+    public ControllerFactory(final Injector injector) {
+        this.injector = Objects.requireNonNull(injector, "injector must not be null.");
+    }
 
     @Override
     public RootController loadController(final String fxmlFile) throws IOException {
@@ -27,8 +27,8 @@ public class ControllerFactory implements IControllerFactory{
         final URL fxmlFileUrl = getClass().getResource(fxmlFile);
 
         final FXMLLoader loader = new FXMLLoader(fxmlFileUrl);
-       // final Injector injector = StartUp.getInjector();
-        loader.setControllerFactory(StartUp.getInjector()::getInstance); // maybe better to construct it inside this factory
+        //final Injector injector = StartUp.getInjector();
+        loader.setControllerFactory(injector::getInstance); // maybe better to construct it inside this factory
 
         final Parent view = loader.load();
         final RootController controller = loader.getController();
