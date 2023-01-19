@@ -43,9 +43,9 @@ public class SceneManager implements ISceneManager {
     }
 
     public void showScene(String fxmlFile) throws IOException {
-         seperate class
-        final RootController controller =
-                controllerFactory.loadController("Base.fxml");
+//         seperate class
+//        final RootController controller =
+//                controllerFactory.loadController("Base.fxml");
 
         Scene scene = new Scene(loadViewNodeHierarchy(fxmlFile));
         stage.setTitle("root");
