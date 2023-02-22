@@ -16,7 +16,7 @@ public class Main extends Application {
     private static final int SCALE_FACTOR = 6;
 
     private Image image;
-    private int   scaledImageSize;
+    private int scaledImageSize;
 
     @Override public void init() {
         image = new Image(
