@@ -22,5 +22,6 @@ public class Main {
         System.out.println("\nAfter withdrawals and transfers:");
         System.out.println(checkingAccount.getAccountNumber() + ": " + checkingAccount.getBalance());
         System.out.println(savingsAccount.getAccountNumber() + ": " + savingsAccount.getBalance());
+
     }
 }
