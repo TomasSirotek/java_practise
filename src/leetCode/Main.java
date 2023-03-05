@@ -1,6 +1,8 @@
 package leetCode;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -14,7 +16,30 @@ public class Main {
 //        System.out.println(containsDuplicate(arr2));
 //        System.out.println(containsDuplicate(arr3));
 
-        System.out.println(isAnagram("ab","ba"));
+     //   System.out.println(isAnagram("ab","ba"));
+
+//        var result = twoSum(new int[]{3,2,4}, 6);
+//        System.out.println(List.of(result));
+//        System.out.println(result[0] + " " + result[1]);
+
+        int[] arr = {1,2,3,4,5,6,7};
+
+        for (int counter = arr.length - 1; counter >= 0; counter--) {
+            int last = arr[arr.length - 1];
+            System.out.println(arr[counter]);
+        }
+    }
+
+    public static int[] twoSum(int[] nums, int target) {
+        return null;
+        //            int currentNum = nums[i];
+//            int nextNum = nums[i + 1];
+//
+//            if(currentNum + nextNum == target){
+//                return new int[]{nums[i], nums[i + 1]};
+//            }
+//        }
+//        return new int[]{};
     }
 
 
